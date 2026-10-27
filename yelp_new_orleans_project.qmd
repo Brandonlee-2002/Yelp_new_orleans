@@ -1,0 +1,46 @@
+---
+title: "Yelp New Orleans Restaurant Analysis"
+subtitle: "A portfolio project in data cleaning, joins, spatial analysis, and reviewer-adjusted ratings"
+author: "Brandon Lee"
+format:
+  html:
+    toc: true
+    code-fold: true
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Research question
+
+_State the final one-sentence research question here._
+
+## Executive summary
+
+_Write after completing the analysis._
+
+## Data and large-file handling
+
+_Document the Yelp files, boundary sources, import strategy, memory constraints, and filtered outputs._
+
+## Restaurant definition and cleaning
+
+_Explain how New Orleans restaurants were identified and how missing values were handled._
+
+## Category selection
+
+_Show category counts, category pairs, the selected theme, and the inclusion rule._
+
+## Geographic comparison
+
+_Compare at least two geographic systems and defend the final choice._
+
+## Ratings and reviewer adjustment
+
+_Compare raw business ratings with reviewer-adjusted results._
+
+## Conclusions and limitations
+
+_Summarize the evidence and limitations._
