@@ -1,1 +1,4 @@
 .DS_Store
+inference
+data/raw/
+data/new_orleans/*.rds

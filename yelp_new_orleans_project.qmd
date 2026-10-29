@@ -15,7 +15,7 @@ execute:
 
 ## Research question
 
-_State the final one-sentence research question here._
+Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?
 
 ## Executive summary
 
@@ -27,19 +27,19 @@ _Document the Yelp files, boundary sources, import strategy, memory constraints,
 
 ## Restaurant definition and cleaning
 
-_Explain how New Orleans restaurants were identified and how missing values were handled._
+Filter to Yelp city `New Orleans`, state `LA`, and exact category token `Restaurants`. Keep both open and closed businesses for the initial historical subset, retain coordinates for later spatial joins, and convert empty postal codes to missing values. See `R/clean.R` and `R/import.R`.
 
 ## Category selection
 
-_Show category counts, category pairs, the selected theme, and the inclusion rule._
+Selected theme: **New Orleans cooking**. Include restaurants matching at least one of `Cajun/Creole`, `Seafood`, `Southern`, or `Soul Food`; count each business once. The planned final ranking contains **15 restaurants**. See [category selection](CATEGORY_SELECTION.md) for counts and co-occurrence evidence.
 
 ## Geographic comparison
 
-_Compare at least two geographic systems and defend the final choice._
+Compare **ZIP Code Tabulation Areas (ZCTAs) and New Orleans wards** using spatial joins between restaurant coordinates and official boundary polygons. Compare restaurant counts, unmatched locations, ratings, and small-area sample sizes. Use ZCTAs as the geographic approximation of ZIP-code areas rather than assigning areas from Yelp postal codes alone. Verify coverage of at least seven areas before defending the final geographic choice. Boundary assignment and the final choice are pending.
 
 ## Ratings and reviewer adjustment
 
-_Compare raw business ratings with reviewer-adjusted results._
+Compare raw business ratings with reviewer-adjusted results, establish review-volume criteria, and produce the final **top 15** table and a boundary map showing their locations.
 
 ## Conclusions and limitations
 

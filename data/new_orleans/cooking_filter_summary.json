@@ -1,0 +1,19 @@
+{
+  "theme": "New Orleans cooking",
+  "selected_categories": ["Cajun/Creole", "Seafood", "Southern", "Soul Food"],
+  "inclusion_rule": "Match at least one selected category",
+  "ranking_size": 15,
+  "new_orleans_restaurants": 2259,
+  "selected_restaurants": 672,
+  "selected_open_restaurants": 435,
+  "selected_missing_coordinates": 0,
+  "review_rows_scanned": 6990280,
+  "new_orleans_reviews": 476421,
+  "selected_reviews": 250304,
+  "selected_restaurants_with_reviews": 672,
+  "review_date_min": "2005-03-14 23:58:21",
+  "review_date_max": "2022-01-19 19:47:59",
+  "geographic_systems_to_compare": ["ZIP Code Tabulation Areas (ZCTAs)", "New Orleans wards"],
+  "geographic_system": "Final choice undecided; official spatial joins have not been performed",
+  "open_status_rule": "Retain both open and closed businesses in the historical dataset"
+}

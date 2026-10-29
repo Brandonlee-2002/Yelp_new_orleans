@@ -1,0 +1,301 @@
+category,restaurant_count,role_or_theme
+Restaurants,2259,"Supporting food, retail, service, and experience labels"
+Food,725,"Supporting food, retail, service, and experience labels"
+Nightlife,540,Nightlife and drinks as a dining theme
+Bars,508,Nightlife and drinks as a dining theme
+Cajun/Creole,401,"Local, American, and European cuisines"
+Breakfast & Brunch,367,"Breakfast, coffee, desserts, and drinks"
+Sandwiches,354,"Meals, dishes, and restaurant formats"
+Seafood,331,"Meals, dishes, and restaurant formats"
+American (New),323,"Local, American, and European cuisines"
+American (Traditional),299,"Local, American, and European cuisines"
+Coffee & Tea,208,"Breakfast, coffee, desserts, and drinks"
+Burgers,202,"Meals, dishes, and restaurant formats"
+Cafes,173,"Breakfast, coffee, desserts, and drinks"
+Pizza,172,"Meals, dishes, and restaurant formats"
+Cocktail Bars,160,Nightlife and drinks as a dining theme
+Event Planning & Services,156,Other co-occurring label
+Southern,155,"Local, American, and European cuisines"
+Fast Food,142,"Meals, dishes, and restaurant formats"
+Mexican,124,Latin American and Caribbean cuisines
+Salad,124,"Meals, dishes, and restaurant formats"
+Italian,121,"Local, American, and European cuisines"
+Chicken Wings,112,"Meals, dishes, and restaurant formats"
+Specialty Food,108,"Supporting food, retail, service, and experience labels"
+French,86,"Local, American, and European cuisines"
+Arts & Entertainment,86,Other co-occurring label
+Bakeries,81,"Breakfast, coffee, desserts, and drinks"
+Desserts,73,"Breakfast, coffee, desserts, and drinks"
+Soul Food,70,"Local, American, and European cuisines"
+Vegetarian,70,Dietary preferences and requirements
+Chinese,69,Asian cuisines
+Vegan,68,Dietary preferences and requirements
+Caterers,67,"Supporting food, retail, service, and experience labels"
+Beer,67,"Supporting food, retail, service, and experience labels"
+Wine & Spirits,67,"Supporting food, retail, service, and experience labels"
+Delis,64,"Meals, dishes, and restaurant formats"
+Venues & Event Spaces,63,Other co-occurring label
+Food Trucks,62,"Meals, dishes, and restaurant formats"
+Wine Bars,61,Nightlife and drinks as a dining theme
+Barbeque,61,"Meals, dishes, and restaurant formats"
+Mediterranean,58,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Lounges,57,Nightlife and drinks as a dining theme
+Vietnamese,57,Asian cuisines
+Sports Bars,54,Nightlife and drinks as a dining theme
+Japanese,54,Asian cuisines
+Asian Fusion,53,Asian cuisines
+Latin American,51,Latin American and Caribbean cuisines
+Sushi Bars,50,"Meals, dishes, and restaurant formats"
+Juice Bars & Smoothies,48,"Breakfast, coffee, desserts, and drinks"
+Tapas/Small Plates,47,"Meals, dishes, and restaurant formats"
+Local Flavor,46,"Supporting food, retail, service, and experience labels"
+Diners,46,"Meals, dishes, and restaurant formats"
+Music Venues,44,"Supporting food, retail, service, and experience labels"
+Middle Eastern,41,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Pubs,39,Nightlife and drinks as a dining theme
+Comfort Food,39,"Local, American, and European cuisines"
+Hotels & Travel,38,Other co-occurring label
+Shopping,38,Other co-occurring label
+Tacos,38,"Meals, dishes, and restaurant formats"
+Steakhouses,37,"Meals, dishes, and restaurant formats"
+Grocery,36,"Supporting food, retail, service, and experience labels"
+Caribbean,34,Latin American and Caribbean cuisines
+Gastropubs,31,"Meals, dishes, and restaurant formats"
+Soup,31,"Meals, dishes, and restaurant formats"
+Food Delivery Services,30,"Supporting food, retail, service, and experience labels"
+Gluten-Free,29,Dietary preferences and requirements
+Hotels,29,Other co-occurring label
+Jazz & Blues,29,"Supporting food, retail, service, and experience labels"
+Dive Bars,28,Nightlife and drinks as a dining theme
+Bagels,26,"Breakfast, coffee, desserts, and drinks"
+Donuts,26,"Breakfast, coffee, desserts, and drinks"
+Ice Cream & Frozen Yogurt,26,"Breakfast, coffee, desserts, and drinks"
+Thai,25,Asian cuisines
+Chicken Shop,25,"Meals, dishes, and restaurant formats"
+Convenience Stores,25,"Supporting food, retail, service, and experience labels"
+Hot Dogs,23,"Meals, dishes, and restaurant formats"
+Seafood Markets,22,"Supporting food, retail, service, and experience labels"
+Food Stands,22,"Meals, dishes, and restaurant formats"
+Tex-Mex,21,Latin American and Caribbean cuisines
+Party & Event Planning,20,Other co-occurring label
+Spanish,18,"Local, American, and European cuisines"
+Tapas Bars,18,"Meals, dishes, and restaurant formats"
+Ethnic Food,17,"Supporting food, retail, service, and experience labels"
+Pop-Up Restaurants,17,"Meals, dishes, and restaurant formats"
+Greek,16,"Local, American, and European cuisines"
+Street Vendors,16,"Meals, dishes, and restaurant formats"
+Beer Bar,16,Nightlife and drinks as a dining theme
+Food Court,15,"Meals, dishes, and restaurant formats"
+Noodles,15,"Meals, dishes, and restaurant formats"
+Indian,14,Asian cuisines
+Meat Shops,14,"Supporting food, retail, service, and experience labels"
+Cuban,13,Latin American and Caribbean cuisines
+Active Life,13,Other co-occurring label
+Waffles,12,"Breakfast, coffee, desserts, and drinks"
+Halal,11,Dietary preferences and requirements
+Ramen,11,"Meals, dishes, and restaurant formats"
+Creperies,11,"Breakfast, coffee, desserts, and drinks"
+Lebanese,9,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Brasseries,9,"Meals, dishes, and restaurant formats"
+Poke,9,"Meals, dishes, and restaurant formats"
+Hawaiian,9,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Coffee Roasteries,9,"Breakfast, coffee, desserts, and drinks"
+Buffets,9,"Meals, dishes, and restaurant formats"
+Modern European,9,"Local, American, and European cuisines"
+Breweries,8,Nightlife and drinks as a dining theme
+Wraps,8,"Meals, dishes, and restaurant formats"
+Cheese Shops,8,"Supporting food, retail, service, and experience labels"
+Cheesesteaks,8,"Meals, dishes, and restaurant formats"
+Fish & Chips,7,"Meals, dishes, and restaurant formats"
+Live/Raw Food,7,Dietary preferences and requirements
+Butcher,7,"Supporting food, retail, service, and experience labels"
+Hookah Bars,7,Nightlife and drinks as a dining theme
+Filipino,7,Asian cuisines
+Dance Clubs,7,Nightlife and drinks as a dining theme
+Shaved Ice,7,"Breakfast, coffee, desserts, and drinks"
+Fruits & Veggies,7,"Supporting food, retail, service, and experience labels"
+Bubble Tea,6,"Breakfast, coffee, desserts, and drinks"
+New Mexican Cuisine,6,Latin American and Caribbean cuisines
+Cafeteria,6,"Meals, dishes, and restaurant formats"
+Internet Cafes,6,"Breakfast, coffee, desserts, and drinks"
+Personal Chefs,6,"Supporting food, retail, service, and experience labels"
+Tours,6,Other co-occurring label
+Turkish,6,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Korean,6,Asian cuisines
+Falafel,6,"Meals, dishes, and restaurant formats"
+Gelato,6,"Breakfast, coffee, desserts, and drinks"
+Brazilian,6,Latin American and Caribbean cuisines
+Tiki Bars,5,Nightlife and drinks as a dining theme
+Health Markets,5,"Supporting food, retail, service, and experience labels"
+Irish,5,"Local, American, and European cuisines"
+Patisserie/Cake Shop,5,"Breakfast, coffee, desserts, and drinks"
+Karaoke,5,"Supporting food, retail, service, and experience labels"
+Festivals,5,Other co-occurring label
+Farmers Market,5,"Supporting food, retail, service, and experience labels"
+Beer Gardens,5,Nightlife and drinks as a dining theme
+Peruvian,5,Latin American and Caribbean cuisines
+Art Galleries,5,Other co-occurring label
+Tea Rooms,5,"Breakfast, coffee, desserts, and drinks"
+African,5,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Wineries,5,Nightlife and drinks as a dining theme
+Pakistani,4,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Kosher,4,Dietary preferences and requirements
+Kebab,4,"Meals, dishes, and restaurant formats"
+Venezuelan,4,Latin American and Caribbean cuisines
+Arcades,4,Other co-occurring label
+Pool Halls,4,Other co-occurring label
+Chocolatiers & Shops,4,"Breakfast, coffee, desserts, and drinks"
+Candy Stores,4,"Breakfast, coffee, desserts, and drinks"
+Empanadas,4,"Meals, dishes, and restaurant formats"
+Imported Food,4,"Supporting food, retail, service, and experience labels"
+Automotive,4,Other co-occurring label
+Gas Stations,4,Other co-occurring label
+Champagne Bars,4,Nightlife and drinks as a dining theme
+Dim Sum,4,"Meals, dishes, and restaurant formats"
+Wedding Planning,4,Other co-occurring label
+Whiskey Bars,4,Nightlife and drinks as a dining theme
+Specialty Schools,4,Other co-occurring label
+Education,4,Other co-occurring label
+Brewpubs,3,Nightlife and drinks as a dining theme
+Irish Pub,3,Nightlife and drinks as a dining theme
+German,3,"Local, American, and European cuisines"
+Trinidadian,3,Latin American and Caribbean cuisines
+Local Services,3,Other co-occurring label
+Health & Medical,3,Other co-occurring label
+Acai Bowls,3,"Breakfast, coffee, desserts, and drinks"
+Flowers & Gifts,3,Other co-occurring label
+Boat Charters,3,Other co-occurring label
+Basque,3,"Local, American, and European cuisines"
+Pop-up Shops,3,Other co-occurring label
+Colombian,3,Latin American and Caribbean cuisines
+Ethiopian,3,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Fitness & Instruction,3,Other co-occurring label
+Home & Garden,3,Other co-occurring label
+Taiwanese,3,Asian cuisines
+Macarons,3,"Breakfast, coffee, desserts, and drinks"
+Home Services,3,Other co-occurring label
+Tobacco Shops,3,Other co-occurring label
+Gay Bars,3,Nightlife and drinks as a dining theme
+Do-It-Yourself Food,3,"Supporting food, retail, service, and experience labels"
+Cooking Schools,3,"Supporting food, retail, service, and experience labels"
+Custom Cakes,3,"Breakfast, coffee, desserts, and drinks"
+Honduran,3,Latin American and Caribbean cuisines
+Wholesale Stores,3,Other co-occurring label
+Organic Stores,2,"Supporting food, retail, service, and experience labels"
+Beauty & Spas,2,Other co-occurring label
+Eatertainment,2,"Meals, dishes, and restaurant formats"
+Adult Entertainment,2,Other co-occurring label
+Bowling,2,Other co-occurring label
+Cupcakes,2,"Breakfast, coffee, desserts, and drinks"
+Herbal Shops,2,Other co-occurring label
+Mags,2,Other co-occurring label
+Bookstores,2,Other co-occurring label
+Books,2,Other co-occurring label
+Arts & Crafts,2,Other co-occurring label
+Music & Video,2,Other co-occurring label
+Pan Asian,2,Asian cuisines
+Szechuan,2,Asian cuisines
+Drive-Thru Bars,2,Nightlife and drinks as a dining theme
+Golf,2,Other co-occurring label
+Sporting Goods,2,Other co-occurring label
+Souvenir Shops,2,Other co-occurring label
+Gift Shops,2,Other co-occurring label
+Pretzels,2,"Breakfast, coffee, desserts, and drinks"
+Delicatessen,2,"Meals, dishes, and restaurant formats"
+Piano Bars,2,Nightlife and drinks as a dining theme
+International Grocery,2,"Supporting food, retail, service, and experience labels"
+Resorts,2,Other co-occurring label
+Musicians,2,Other co-occurring label
+Smokehouse,2,"Meals, dishes, and restaurant formats"
+Performing Arts,2,Other co-occurring label
+Swimming Pools,2,Other co-occurring label
+Pasta Shops,2,"Meals, dishes, and restaurant formats"
+Travel Services,2,Other co-occurring label
+Parks,2,Other co-occurring label
+Teppanyaki,2,"Meals, dishes, and restaurant formats"
+Wine Tasting Room,2,Nightlife and drinks as a dining theme
+Gyms,2,Other co-occurring label
+Burmese,2,Asian cuisines
+Public Services & Government,2,Other co-occurring label
+Landmarks & Historical Buildings,2,Other co-occurring label
+Themed Cafes,2,"Meals, dishes, and restaurant formats"
+Haitian,2,Latin American and Caribbean cuisines
+Fondue,2,"Meals, dishes, and restaurant formats"
+Real Estate,2,Other co-occurring label
+Shopping Centers,2,Other co-occurring label
+Bed & Breakfast,1,Other co-occurring label
+Religious Organizations,1,Other co-occurring label
+Hair Salons,1,Other co-occurring label
+Skin Care,1,Other co-occurring label
+Day Spas,1,Other co-occurring label
+Vitamins & Supplements,1,Other co-occurring label
+Herbs & Spices,1,"Supporting food, retail, service, and experience labels"
+Electronics Repair,1,Other co-occurring label
+Barbers,1,Other co-occurring label
+Nutritionists,1,Other co-occurring label
+Drugstores,1,Other co-occurring label
+Cards & Stationery,1,Other co-occurring label
+Community Service/Non-Profit,1,Other co-occurring label
+Shanghainese,1,Asian cuisines
+Boating,1,Other co-occurring label
+Boat Tours,1,Other co-occurring label
+Kids Activities,1,Other co-occurring label
+Indoor Playcentre,1,Other co-occurring label
+Nicaraguan,1,Latin American and Caribbean cuisines
+Popcorn Shops,1,"Breakfast, coffee, desserts, and drinks"
+Mass Media,1,Other co-occurring label
+Salvadoran,1,Latin American and Caribbean cuisines
+Golf Lessons,1,Other co-occurring label
+Golf Equipment,1,Other co-occurring label
+Kitchen & Bath,1,Other co-occurring label
+Laotian,1,Asian cuisines
+Egyptian,1,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Vape Shops,1,Other co-occurring label
+Holiday Decorations,1,Other co-occurring label
+Tree Services,1,Other co-occurring label
+Home Decor,1,Other co-occurring label
+Christmas Trees,1,Other co-occurring label
+Yelp Events,1,Other co-occurring label
+British,1,"Local, American, and European cuisines"
+Adult,1,Other co-occurring label
+Cabaret,1,Other co-occurring label
+Cigar Bars,1,Nightlife and drinks as a dining theme
+Bike Repair/Maintenance,1,Other co-occurring label
+Bikes,1,Other co-occurring label
+Professional Services,1,Other co-occurring label
+Sports Wear,1,Other co-occurring label
+Fashion,1,Other co-occurring label
+Food Tours,1,"Supporting food, retail, service, and experience labels"
+Cooking Classes,1,"Supporting food, retail, service, and experience labels"
+Personal Shopping,1,Other co-occurring label
+Travel Agents,1,Other co-occurring label
+Aquariums,1,Other co-occurring label
+Discount Store,1,Other co-occurring label
+Distilleries,1,Nightlife and drinks as a dining theme
+Photographers,1,Other co-occurring label
+Social Clubs,1,Other co-occurring label
+Country Clubs,1,Other co-occurring label
+Ethnic Grocery,1,"Supporting food, retail, service, and experience labels"
+Supernatural Readings,1,Other co-occurring label
+Auction Houses,1,Other co-occurring label
+Moroccan,1,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Cultural Center,1,Other co-occurring label
+Walking Tours,1,Other co-occurring label
+Historical Tours,1,Other co-occurring label
+Art Tours,1,Other co-occurring label
+Japanese Curry,1,Asian cuisines
+Tabletop Games,1,Other co-occurring label
+Malaysian,1,Asian cuisines
+Apartments,1,Other co-occurring label
+Party Supplies,1,Other co-occurring label
+Bar Crawl,1,Other co-occurring label
+Shaved Snow,1,"Breakfast, coffee, desserts, and drinks"
+Nurseries & Gardening,1,Other co-occurring label
+Arabic,1,"Mediterranean, Middle Eastern, African, and Pacific cuisines"
+Real Estate Agents,1,Other co-occurring label
+Shared Office Spaces,1,Other co-occurring label
+Argentine,1,Latin American and Caribbean cuisines
+Ukrainian,1,"Local, American, and European cuisines"
+Polish,1,"Local, American, and European cuisines"
+Russian,1,"Local, American, and European cuisines"
+Persian/Iranian,1,"Mediterranean, Middle Eastern, African, and Pacific cuisines"

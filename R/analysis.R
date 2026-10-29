@@ -2,9 +2,10 @@
 # Analysis stage: intentionally left blank for implementation.
 #
 # Planned tasks:
-# - compare candidate category themes
+# - analyze the selected New Orleans cooking theme (see R/clean.R)
 # - join businesses to reviews
 # - perform spatial joins
-# - compare geographic systems
+# - compare ZIP Code Tabulation Areas (ZCTAs) and New Orleans wards
 # - calculate raw and reviewer-adjusted ratings
+# - define review-volume and open-status criteria, then rank the top 15
 # - save tables and figures
