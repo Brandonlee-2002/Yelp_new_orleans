@@ -1,71 +1,21 @@
 ---
-title: "Yelp New Orleans Restaurant Analysis"
-subtitle: "A portfolio project in data cleaning, joins, spatial analysis, and reviewer-adjusted ratings"
+title: "Where to find New Orleans cooking"
+subtitle: "15 standout restaurants, reviewer-adjusted ratings, and the geography behind them."
 author: "Brandon Lee"
+date: 2026-10-29
 format:
   html:
     toc: true
-    code-fold: true
+    toc-depth: 2
     embed-resources: true
     css: report.css
+    include-before-body: report-nav.html
 execute:
   echo: true
   warning: false
   message: false
 ---
 
-## Research question
+> Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?
 
-[Portfolio README](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/README.md) · [AI assistance log](ai-log.html) · [Report source](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/yelp_new_orleans_project.qmd)
-
-Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?
-
-## Executive summary
-
-The initial New Orleans cooking filter contains **672 restaurants and 250,304 reviews**. The official Census city check retains **656 restaurants and 249,002 reviews** for the geographic analysis. Both ZCTAs and wards contain restaurants in 17 areas; **wards are selected for the main comparison** because their restaurant counts are more balanced and fewer areas have very small samples. Two lakefront restaurants remain unmatched to wards. Final restaurant eligibility, reviewer-adjusted scores, the top 15, and a final best-area conclusion remain outstanding.
-
-## Data and large-file handling
-
-The import scans the complete Yelp business and review JSON files in pages, filters New Orleans restaurants, and retains only the review columns needed for ratings analysis. It saves compressed RDS files so subsequent analysis does not reload the raw JSON. Filtered reviews are accumulated in memory; this is not a fully disk-backed workflow. Review text and voting fields are omitted. The selected review records span March 14, 2005 through January 19, 2022. The user reported that RStudio became unresponsive while working with the large data. Loading and verifying the smaller filtered RDS files in a separate R process avoided depending on that frozen session; no memory measurements were collected, so the cause of the freeze is unknown.
-
-Run `Rscript R/analysis.R` from the repository root to reproduce the descriptive tables and figures using the saved theme RDS files. This script uses `ggplot2`. See the [restaurant summary](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurant_summary.csv), [missing-value audit](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/missing_values.csv), [restaurants with blank addresses](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurants_missing_addresses.csv), and [validation checks](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/validation_checks.csv).
-
-## Restaurant definition and cleaning
-
-Filter to Yelp city `New Orleans`, state `LA`, and exact category token `Restaurants`. Keep both open and closed businesses for the initial historical subset, retain coordinates for later spatial joins, and convert empty postal codes to missing values. See the [cleaning code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R) and [import code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R).
-
-## Category selection
-
-Selected theme: **New Orleans cooking**. Include restaurants matching at least one of `Cajun/Creole`, `Seafood`, `Southern`, or `Soul Food`; count each business once. The planned final ranking contains **15 restaurants**. See [category selection](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/CATEGORY_SELECTION.md) for counts and co-occurrence evidence.
-
-{{< include initial_results.qmd >}}
-
-{{< include geographic_results.qmd >}}
-
-## Ratings and reviewer adjustment
-
-**Step 7 remains outstanding.** Use the city-only RDS files for the next stage, calculate reviewer baselines and adjusted scores, compare all reviewers with eligible reviewers, justify restaurant and reviewer activity thresholds, and test ranking sensitivity. Then produce the final **top 15** table and ward-boundary map. The current raw area means are descriptive, not the final ranking.
-
-## Conclusions and limitations
-
-Steps 3–6 are complete: the category evidence and review join are documented, city-label mismatches are audited, and ZCTAs and wards are compared with counts, raw ratings, and maps. Wards offer the more balanced restaurant pool for the main comparison. Category overlap, small samples, historical boundary differences, two unmatched lakefront points, and the 2005–2022 review window limit interpretation. The final top 15 and best area require Step 7 and the final synthesis.
-
-## Completion audit
-
-[Read the deliverables audit](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/PROJECT_STATUS.md) for the requirement-by-requirement status. The remaining work is reviewer normalization and sensitivity analysis, final eligibility decisions, the top-15 table and map, a final answer and executive summary, and a tested dependency lockfile. The assignment requests a top 10; the project uses a top 15 following the user's instruction.
-
-## AI assistance log
-
-[Read the separate AI assistance log](ai-log.html) for specific prompts, follow-up corrections, AI-supported work, and verification status. Its source is `ai-log.qmd`.
-
-## Portfolio files and source code
-
-The [README](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/README.md) is the portfolio landing page. This rendered report provides the detailed results without requiring the reader to execute R. Download the repository and open this HTML file in a browser to view it locally.
-
-- [Geographic analysis code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/geography.R)
-- [Boundary download code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/download_boundaries.R)
-- [Boundary provenance](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/boundaries/README.md)
-- [Analysis code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R)
-- [Report source](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/yelp_new_orleans_project.qmd)
-- [Generated descriptive results](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/initial_results.qmd)
-- [AI log source](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/ai-log.qmd)
+{{< include final_results.qmd >}}

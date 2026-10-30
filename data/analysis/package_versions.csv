@@ -1,5 +1,7 @@
-"package","version"
-"jsonlite","2.0.0"
-"ggplot2","4.0.2"
-"sf","1.1.0"
-"tigris","2.2.1"
+package,version
+Rcpp,1.1.1
+ggplot2,4.0.2
+ggrepel,0.9.8
+jsonlite,2.0.0
+sf,1.1.0
+tigris,2.2.1

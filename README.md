@@ -1,100 +1,90 @@
-# Where to Find New Orleans Cooking
+# Where to find New Orleans cooking
 
-**[Read the report online](https://brandonlee-2002.github.io/Yelp_new_orleans/yelp_new_orleans_project.html)** · [AI assistance log](https://brandonlee-2002.github.io/Yelp_new_orleans/ai-log.html)
+**[Read the report →](https://brandonlee-2002.github.io/Yelp_new_orleans/yelp_new_orleans_project.html)** · [Methods & maps](https://brandonlee-2002.github.io/Yelp_new_orleans/methods.html) · [AI assistance log](https://brandonlee-2002.github.io/Yelp_new_orleans/ai-log.html)
 
-**Project status:** Steps 3–6 are complete: categories, review join, city-boundary check, and ZCTA/ward comparison. Reviewer adjustment and the final top 15 remain in progress. [Deliverables audit](PROJECT_STATUS.md).
-
-## Research question
+A portfolio project by **Brandon Lee** combining large-file data preparation, reviewer-adjusted ratings, and spatial analysis in R.
 
 > Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?
 
-## Executive summary
+## Findings
 
-The initial filter contains 672 New Orleans cooking restaurants and 250,304 reviews. The Census boundary check retains 656 restaurants and 249,002 reviews for the geographic comparison; wards provide more balanced restaurant counts than ZCTAs and are selected for the main analysis. Reviewer adjustment, the top 15, and a final best-area conclusion remain outstanding.
+The final analysis covers **656 city-contained restaurants and 249,002 reviews**. After applying reviewer-activity and restaurant-evidence rules, **Tito’s Ceviche & Pisco, Ajun Cajun, and Restaurant August** lead the 15-place shortlist. **Ward 9** has the highest average adjusted score among wards meeting the primary area evidence minimum, but the leading ward changes under alternative rules; the data do not establish one universally best area.
 
-## View the report
+- **Reviewer adjustment matters:** 12 of the adjusted top 15 also appear in the raw-rating top 15, using the same eligible pool.
+- **Evidence comes first:** ranking requires a historical open flag, 50+ available reviews, and 20+ distinct eligible reviewers. Reviewers qualify with five reviews in the selected city/category pool. These rules retain 288 restaurants.
+- **Geography matters:** both ZCTAs and wards contain restaurants in 17 areas. Wards offer more balanced restaurant counts; ZCTAs remain the comparison. The final top 15 span 11 wards.
 
-This portfolio uses **Option 2: a README landing page plus a rendered HTML report**. The report contains the methods, tables, graphs, limitations, and analysis progress. The README provides the question, key findings, and links to the supporting work.
+**Historical snapshot:** reviews end in January 2022. “Open” refers to the dataset flag, not verified current operation. The four-label theme includes international restaurants carrying a Seafood or other selected label.
 
-View the report directly on [GitHub Pages](https://brandonlee-2002.github.io/Yelp_new_orleans/yelp_new_orleans_project.html) without running R or Quarto. For an offline copy, download or clone this repository and open `docs/yelp_new_orleans_project.html` in a browser. Open `docs/ai-log.html` to read the AI log. Both HTML pages embed their display resources. Keep the repository folders together so links to source code and CSV tables work. GitHub may show HTML source when following the file link; use the downloaded file for the rendered browser view.
+![The final top 15 on official New Orleans ward boundaries](figures/final_top_15_map.png)
 
-## Data sources
+[Download the top 15](data/analysis/top_15_restaurants.csv) · [All eligible rankings](data/analysis/eligible_restaurant_rankings.csv) · [Sensitivity results](data/analysis/ranking_sensitivity.csv) · [Completion audit](PROJECT_STATUS.md)
 
-The analysis uses the business and review JSON files from the [Yelp Open Dataset](https://business.yelp.com/data/resources/open-dataset/). Download and extract these files to `data/raw/` when reproducing the import. Geographic analysis uses 2020 Census place and ZCTA boundaries plus the City of New Orleans ward service snapshot downloaded October 29, 2026. See [boundary sources and provenance](data/boundaries/README.md).
+## Portfolio format
 
-Raw Yelp JSON files belong in `data/raw/` locally and must not be committed.
+This is **Option 2: README plus a rendered HTML report**, hosted on GitHub Pages. The report, methods appendix, and AI log are already rendered; readers do not need to run R or Quarto. For a local copy, download the repository and open `docs/index.html` in a browser.
 
-## Project scope and decisions
+The main report contains the final findings, ranked table, numbered boundary map, reviewer normalization, area recommendation, and limitations. The methods appendix contains category counts and overlaps, data-quality checks, joins, source documentation, geographic comparisons, and diagnostic maps.
 
-- Restaurant definition: Yelp businesses with city `New Orleans`, state `LA`, and the exact `Restaurants` category token.
-- Selected theme: **New Orleans cooking** — Cajun/Creole, Seafood, Southern, and Soul Food.
-- Inclusion rule: match at least one selected category; each business counts once.
-- Ranking target: **top 15 restaurants**; ranking criteria will be established during ratings analysis.
-- Open status: retain open and closed businesses in this historical dataset for now.
-- Geographic systems to compare: **ZIP Code Tabulation Areas (ZCTAs) and New Orleans wards**. Use official boundaries and restaurant coordinates for both systems; Yelp postal codes alone do not establish ZCTA membership.
-- Final geographic system: **wards**, supported by more balanced sample sizes; ZCTAs remain the comparison. Both systems contain restaurants in 17 areas.
-- Geographic scope: 656 restaurants inside Census New Orleans; 16 initial city-label mismatches are retained in an audit. Two city-contained lakefront points remain unmatched to wards.
+## Data and decisions
 
-## Main findings
+The [Yelp Open Dataset](https://business.yelp.com/data/resources/open-dataset/) business and review JSON streams were scanned in full. Exact city/state and `Restaurants` category filters retained 2,259 businesses and 476,421 reviews. The union of Cajun/Creole, Seafood, Southern, and Soul Food retained 672 businesses and 250,304 reviews. An independent city-boundary check identified 16 outside-city businesses; the main analysis uses the remaining 656 and preserves the original pool in audit files.
 
-- The city-only group occupies 17 ZCTAs and 17 wards. Wards have a median of 25 restaurants per populated area versus 16 for ZCTAs.
-- Ward 4 offers the largest selection (116 restaurants); Ward 13 has the highest raw mean rating among wards with at least 10 restaurants (4.15 stars, 20 restaurants). These are preliminary historical summaries, not final recommendations.
+Geographic inputs are Census 2020 place and ZCTA polygons and a City of New Orleans ward-service snapshot downloaded October 29, 2026. [Boundary provenance, source URLs, and checksums](data/boundaries/README.md) are saved with the inputs. Two lakefront points remain outside the ward polygons; neither is in the final top 15. No nearest-area snapping is applied.
 
-- No NA values were found in the retained columns, but seven restaurants have blank street addresses; all have coordinates.
-- The median Yelp business rating is 4 stars, and the median number of available reviews per restaurant is 106.5.
-- Of 672 restaurants, 435 are marked open and 237 closed in the historical snapshot. Eligibility for the top 15 has not been decided.
-
-![Selected category counts](figures/cooking_category_counts.png)
-
-[Restaurant summary table](data/analysis/restaurant_summary.csv) · [Data-quality audit](data/analysis/missing_values.csv) · [Review-count threshold comparison](data/analysis/review_thresholds.csv)
-
-## Limitations
-
-Review records end in January 2022; historical open-status flags do not establish current operating status. Categories overlap. Reviewer-adjusted scores and final rankings remain pending. Ward boundaries have an unspecified historical effective date; two lakefront points fall outside the saved ward polygons.
-
-## Source code
-
-- [Quarto report](yelp_new_orleans_project.qmd)
-- [Import workflow](R/import.R)
-- [Cleaning workflow](R/clean.R)
-- [Analysis workflow](R/analysis.R)
-- [Geographic analysis](R/geography.R)
-- [Boundary download workflow](R/download_boundaries.R)
+Scores subtract a reviewer's mean rating in the selected city/category pool from each review. They measure deviation from scoring habits, **not new Yelp ratings**. Both mean and median baselines and multiple evidence thresholds are compared. Ward means weight eligible restaurants equally; a ward needs ten eligible restaurants for the primary area ranking. These choices are documented analysis rules, not guarantees of statistical significance.
 
 ## Repository guide
 
-| Location | Contents |
+| Location | Purpose |
 |---|---|
-| `README.md` | Portfolio landing page |
-| `docs/yelp_new_orleans_project.html` | Viewable analysis report |
-| `docs/ai-log.html` | Viewable AI assistance log |
-| `yelp_new_orleans_project.qmd`, `initial_results.qmd`, `geographic_results.qmd` | Report source and generated results section |
-| `ai-log.qmd` | AI log source |
-| `R/` | Import, cleaning, and analysis code |
-| `data/raw/` | Local raw files, excluded from Git because of their size |
-| `data/new_orleans/` | Filtered data and category evidence; RDS files are local |
-| `data/boundaries/` | Official boundary snapshots, metadata, and source checksums |
-| `data/analysis/` | Exported descriptive and validation tables |
-| `figures/` | Saved report plots |
+| `docs/` | Published report, methods appendix, and AI log |
+| `yelp_new_orleans_project.qmd`, `methods.qmd`, `ai-log.qmd` | Quarto page sources |
+| `initial_results.qmd`, `geographic_results.qmd`, `final_results.qmd` | Generated report sections |
+| `R/import.R`, `R/clean.R` | Paged import, exact category filtering, saved RDS files |
+| `R/analysis.R`, `R/geography.R`, `R/rankings.R` | Descriptive, geographic, and reviewer-adjusted analyses |
+| `R/download_boundaries.R` | Boundary retrieval; preserves existing snapshots |
+| `scripts/build_final_sections.py` | Builds final report prose and tables from exported results |
+| `data/analysis/` | Derived CSV results, sensitivity comparisons, and validation records |
+| `data/boundaries/` | Official boundary snapshots and metadata |
+| `data/new_orleans/` | Filtered business outputs; review-level RDS files remain local |
+| `data/raw/` | Local raw JSON, excluded from Git because of size |
+| `figures/`, `report.css`, `report-nav.html` | Plots, page styling, and shared navigation |
+| `renv.lock` | Locked R package dependencies |
 
-## Reproduce or update the report
+## Reproduce the analysis
 
-Place the Yelp business and review JSON files in `data/raw/`. Install the R package `jsonlite`, then run `Rscript R/import.R` from the repository root. The script scans both complete input files in pages, keeps all New Orleans restaurant businesses and their reviews, and saves a separate New Orleans cooking subset. Review text and voting fields are omitted because the planned ratings analysis does not need them. Filtered reviews are accumulated in memory, then written as compressed RDS files.
+Use **R 4.4.1**, Python 3, and Quarto. Exact numerical reproduction requires the original Yelp extract used here (latest selected review: January 19, 2022); a different release may yield different results. Download the licensed business and review JSON files from Yelp and place them in `data/raw/` using the original filenames. They are not committed. If the filtered RDS files already exist, skip the import command below.
 
-See [category selection](CATEGORY_SELECTION.md), [filtered restaurants](data/new_orleans/business_new_orleans_cooking.csv), and [filter summary](data/new_orleans/cooking_filter_summary.json). Raw JSON and generated RDS files are ignored by Git. These historical data do not establish current opening status.
+From R in the repository root, initialize a local package environment and restore the lockfile:
 
-For the initial and geographic analysis, install `ggplot2`, `sf`, and `tigris` (plus `jsonlite` for import), then run these commands from the repository root (Quarto is needed only to rebuild the HTML):
+```r
+install.packages("renv")
+renv::init(bare = TRUE, restart = FALSE)
+renv::restore(prompt = FALSE)
+renv::load()
+```
+
+The lockfile was tested in a separate renv library, with package versions checked and the identical ordered top-15 IDs regenerated. R's bundled recommended packages are verified separately from the restored project packages. Native requirements for `sf`—GDAL, GEOS, PROJ, and related libraries—remain platform prerequisites when suitable binaries are unavailable. See [restore checks](data/analysis/environment_restore_check.csv) and [test result](data/analysis/environment_restore_result.txt).
+
+Then run from the project root:
 
 ```sh
+Rscript R/import.R
 Rscript R/analysis.R
 Rscript R/download_boundaries.R
 Rscript R/geography.R
+Rscript R/rankings.R
+python3 scripts/build_final_sections.py
 quarto render yelp_new_orleans_project.qmd --output-dir docs --no-clean
+quarto render methods.qmd --output-dir docs --no-clean
 quarto render ai-log.qmd --output-dir docs --no-clean
 ```
 
-The scripts read the saved theme RDS files and saved official boundaries, generate CSV summaries in `data/analysis/`, plots and maps in `figures/`, and the generated report sections `initial_results.qmd` and `geographic_results.qmd`. Boundary downloads are skipped when snapshots already exist. The city-only RDS files are saved separately; initial inputs remain unchanged. The `--no-clean` option preserves the other HTML page. Include the rendered `docs/` pages, CSV summaries, figures, and source code in the portfolio repository so readers can inspect results without executing the analysis. Raw JSON and generated RDS files stay excluded from Git.
+Imports process pages of 10,000 JSON records and keep only needed columns. Filtered reviews are accumulated in memory, then saved as compressed RDS. Subsequent analysis uses the smaller files. Saved boundary snapshots are reused without downloading again. The `--no-clean` flag preserves the other HTML pages. Commit and push the rendered `docs/` files to update GitHub Pages from `main`'s `/docs` folder.
 
-## GitHub Pages publishing
+`R/lock_environment.R` is an optional maintenance script for refreshing and independently testing the environment; it does not modify the system R library. [Validation records](data/analysis/final_validation.csv) check ranking eligibility, ID uniqueness, reviewer centering, and map coordinates. The [completion audit](PROJECT_STATUS.md) links every required deliverable to evidence.
 
-GitHub Pages serves the committed `docs/` folder from the `main` branch. Render the report and AI log locally with the commands above, commit the updated HTML and figures, then push to `main` to update the site. No raw data or R execution is required on GitHub. `docs/index.html` opens the report at the site root; `docs/.nojekyll` serves the rendered files directly.
+## Limits
+
+Results are historical, category-dependent, and sensitive to evidence rules. The initial exact Yelp city-label filter can omit businesses labeled with a different city. Only 23.9% of reviews contribute to adjusted scores; activity selection changes the reviewer mix. Geographic boundary dates do not align with every review date, and some coordinates or addresses may be imprecise. The analysis does not model price, travel time, current service, causal effects, or statistically significant differences between wards.

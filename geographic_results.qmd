@@ -103,7 +103,7 @@ The tradeoffs are the two unmatched lakefront points, the need to explain ward n
 
 #### Area summaries
 
-Means below give each restaurant equal weight, not each review. Review totals indicate evidence volume but do not establish independence or uncertainty. These are historical raw-rating summaries; the reviewer-adjusted comparison in Step 7 remains outstanding.
+Means below give each restaurant equal weight, not each review. Review totals indicate evidence volume but do not establish independence or uncertainty. These are historical raw-rating summaries; the final reviewer-adjusted comparison is presented in the main report.
 
 **Wards**
 
@@ -157,7 +157,7 @@ Means below give each restaurant equal weight, not each review. Review totals in
 
 :::
 
-Ward 4 has the most qualifying restaurants (116); Ward 13 has the highest mean business rating among wards with at least 10 restaurants (4.15, n=20), narrowly ahead of Ward 8 (4.147, n=17). This is not enough to declare a final best area. ZCTA 70130 has the largest selection (213), while 70117 leads populated ZCTAs with at least 10 restaurants in raw mean stars (4.13, n=30). Ratings must still be checked against reviewer adjustment and final eligibility rules.
+Ward 4 has the most qualifying restaurants (116); Ward 13 has the highest mean business rating among wards with at least 10 restaurants (4.15, n=20), narrowly ahead of Ward 8 (4.147, n=17). This is not enough to declare a final best area. ZCTA 70130 has the largest selection (213), while 70117 leads populated ZCTAs with at least 10 restaurants in raw mean stars (4.13, n=30). The main report checks these raw patterns against reviewer adjustment and final eligibility rules.
 
 #### Boundary sources and time limitations
 

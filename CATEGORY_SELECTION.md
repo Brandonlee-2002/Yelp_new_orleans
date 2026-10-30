@@ -30,7 +30,7 @@ Use businesses with Yelp city `New Orleans`, state `LA`, and the exact `Restaura
 
 The category overlaps support examining these labels as one related group. Matching all four labels is not required.
 
-## Completed geographic comparison and remaining decisions
+## Final analysis decisions
 
 Filtering the complete review file (6,990,280 records) retained **250,304 reviews** for the 672 selected restaurants. Every selected restaurant has reviews and coordinates. Of these businesses, **435 are marked open** in the historical snapshot; this does not verify current operating status. Selected review dates span March 2005 through January 2022. Full filter metrics are saved in `data/new_orleans/cooking_filter_summary.json`.
 
@@ -38,9 +38,9 @@ Filtering the complete review file (6,990,280 records) retained **250,304 review
 - **Seven-area requirement met:** the city-contained group occupies 17 ZCTAs and all 17 wards.
 - **Main geography: wards.** Wards have a median of 25 restaurants per populated area versus 16 for ZCTAs; only one ward has fewer than 10 restaurants versus five populated ZCTAs. Wards assign 654 of 656 locations; two lakefront points remain unmatched and are documented. ZCTAs assign all 656 and remain the sensitivity comparison.
 - See `data/analysis/geography_comparison.csv`, `data/analysis/category_by_area.csv`, and the report for maps, area summaries, scope decisions, and source dates.
-- Define “best” using review volume, raw ratings, and reviewer-adjusted scores before selecting the top 15.
-- Decide whether the final recommendation ranking should exclude businesses marked closed in this historical dataset.
-- Produce a final table of 15 restaurants and a boundary map showing their locations.
+- **Ranking complete:** historical open flag, at least 50 available reviews, and at least 20 distinct reviewers who each have five city/category reviews. Rank 288 eligible restaurants by mean-baseline adjusted score; retain a top 15.
+- **Open-status decision:** businesses marked closed remain in descriptive audits but are excluded from the final ranking. Current operation has not been independently verified.
+- **Final outputs complete:** top-15 table and numbered ward map, mean and median baselines, reviewer/restaurant threshold sensitivity, and a conditional Ward 9 area recommendation. No ward is a stable winner across all alternatives.
 
 The instructor's source document specifies a top 10; this project uses **top 15** following the user's direction. The original inference instructions remain unchanged.
 

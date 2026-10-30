@@ -1,0 +1,23 @@
+{
+  "city_restaurants": 656,
+  "city_reviews": 249002,
+  "city_reviewers": 138367,
+  "eligible_reviewers": 7066,
+  "eligible_reviews": 59584,
+  "eligible_review_percent": 23.9291,
+  "eligible_restaurants": 288,
+  "marked_open": 423,
+  "best_restaurant": "Tito's Ceviche & Pisco",
+  "best_ward": "Ward 9",
+  "best_ward_score": 0.0826,
+  "best_ward_restaurants": 12,
+  "best_ward_top_15": 1,
+  "rankable_wards": 10,
+  "top15_unmatched_ward": 0,
+  "pool_unmatched_ward": 1,
+  "raw_adjusted_top15_overlap": 12,
+  "raw_adjusted_spearman": 0.8764,
+  "area_sensitivity_same_winner": 3,
+  "area_sensitivity_scenarios": 10,
+  "current_operating_status_verified": false
+}

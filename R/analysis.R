@@ -158,9 +158,9 @@ lines <- c("## Initial descriptive results", "",
   "These are alternative eligibility rules, not a selected cutoff. The marked-open column shows how an additional historical open-status filter would change the pool.", "",
   md_table(threshold_summary), "",
   "### Reviewer activity before normalization", "",
-  "Activity counts use reviews within the selected category group. This table shows how much data remains at different reviewer thresholds; no reviewer-adjusted scores have been calculated yet.", "",
+  "Activity counts use reviews within the selected category group. This table shows how much data remains at different reviewer thresholds; the final reviewer-adjusted results appear in the main report.", "",
   md_table(reviewer_thresholds), "",
   "### What remains", "",
-  "This initial section preserves the original 672-restaurant subset. The steps 3–6 section below completes the city-boundary and ZCTA/ward comparisons using the resulting 656 city-contained restaurants. Final eligibility rules, reviewer-adjusted scores, and the top 15 remain outstanding; the plots above are descriptive rather than final rankings.")
+  "This initial section preserves the original 672-restaurant subset. The steps 3–6 section below completes the city-boundary and ZCTA/ward comparisons using the resulting 656 city-contained restaurants. The main report completes the eligibility rules, reviewer-adjusted scores, and top 15; these initial plots remain descriptive rather than final rankings.")
 writeLines(lines, "initial_results.qmd")
 message("Saved descriptive tables, three plots, and initial_results.qmd.")

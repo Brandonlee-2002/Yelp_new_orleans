@@ -1,14 +1,24 @@
 ---
-title: "AI Assistance Log"
-subtitle: "Yelp New Orleans Restaurant Analysis"
+title: "AI assistance log"
+subtitle: "Prompt revisions, analytical decisions, and checks behind the portfolio."
 author: "Brandon Lee"
+date: 2026-10-29
 format:
   html:
     toc: true
+    toc-depth: 2
     embed-resources: true
+    css: report.css
+    include-before-body: report-nav.html
+execute:
+  echo: true
+  warning: false
+  message: false
 ---
 
-This log documents how Codex assisted with project planning, data preparation, and R troubleshooting. It records selected prompts from the project conversation, follow-up instructions, resulting work, and remaining verification. It is a curated record rather than a complete chat transcript. Last updated: October 29, 2026.
+<p class="eyebrow">Accountability · Selected conversation record</p>
+
+This log documents how Codex assisted with project planning, data preparation, and R troubleshooting. It records selected prompts from the project conversation, follow-up instructions, resulting work, and remaining verification. It is a curated record rather than a complete chat transcript. Last updated: October 29, 2026. The final analysis is complete; earlier status notes describe the work at the time of each exchange.
 
 ## Category exploration and a more specific prompt
 
@@ -58,7 +68,7 @@ Codex explained the difference between identifying individual restaurants and co
 
 The user selected the two geographic systems to compare. Codex recorded **ZIP Code Tabulation Areas (ZCTAs) and New Orleans wards** in the project files. ZCTA assignment will use restaurant coordinates and boundary polygons rather than Yelp postal labels alone.
 
-**Status:** Boundary data acquisition, spatial joins, area summaries, and verification of the seven-area requirement remain pending. No final geographic system has been chosen.
+**Status at that stage:** Boundary data acquisition, spatial joins, area summaries, and verification of the seven-area requirement were pending. The later entries document their completion and the choice of wards.
 
 ## Working around an unresponsive RStudio session
 
@@ -119,7 +129,7 @@ Codex implemented and ran `R/analysis.R` using the saved theme RDS files. It gen
 
 The checks found no duplicate IDs, orphan reviews, restaurants without reviews, out-of-range ratings or coordinates, unparseable review dates, or invalid open-status values. There were seven blank addresses. The median published business rating was 4 stars; available reviews per restaurant ranged from 5 to 7,673. These checks do not establish location accuracy or current opening status.
 
-Codex visually inspected the three exported plots and added the results to the report. Final rankings and geographic comparisons remain pending. The code and tables are available in [the analysis script](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R) and [the restaurant summary](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurant_summary.csv).
+Codex visually inspected the three exported plots and added the results to the report. At that stage, final rankings and geographic comparisons were pending. The code and tables are available in [the analysis script](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R) and [the restaurant summary](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurant_summary.csv).
 
 ## GitHub Pages publishing
 
@@ -137,14 +147,26 @@ The official city check identified 16 theme businesses outside Census New Orlean
 
 Codex generated full-city and detail maps, count and raw-rating plots, area summaries, and a requirement-by-requirement audit. The next steps remain reviewer normalization, ranking eligibility and sensitivity, the top-15 table/map, final conclusions, and a tested package lockfile. Initial descriptive results retain the original 672-restaurant scope and are clearly separated from the stricter geographic results.
 
-## Responsibility and remaining work
+## Responsibility and review boundaries
 
 **Layout correction:** The user reported that the category table overlapped the side navigation. Codex shortened display headings and contained tables in keyboard-accessible scrolling regions. CSV column names and analysis values remain unchanged.
 
 **Portfolio format prompt:** "for the portfolio format, can you do Option 2: README plus a rendered HTML report"
 
-Codex organized the README as the portfolio landing page, added viewing and reproduction instructions, and linked it to the rendered report and separate AI log in `docs/`. Source-code and CSV links accompany the results. The report continues to identify unfinished rankings and geographic work.
+Codex organized the README as the portfolio landing page, added viewing and reproduction instructions, and linked it to the rendered report and separate AI log in `docs/`. Source-code and CSV links accompany the results. At that stage, the report identified unfinished rankings and geographic work.
 
-The user selected the theme, requested the top 15, and selected ZCTAs and wards. Codex assisted with code, data filtering, descriptive analysis, documentation, explanations, and output checks. Final ranking eligibility, review-volume threshold selection, reviewer-adjusted ratings, the final top-15 map, and final conclusions remain unfinished. The geographic-system comparison and supporting maps are complete. Suggested methods are not presented as completed results.
+The user selected the theme, requested the top 15, and selected ZCTAs and wards. Codex assisted with code, data filtering, descriptive analysis, documentation, explanations, and output checks. The final ranking criteria, reviewer-adjusted results, top-15 map, geographic comparisons, and conclusions are now complete. Earlier status notes describe the stage at which those exchanges occurred. Current operating status, causal explanations, and historical boundary equivalence are outside the verified evidence. Suggested methods are not presented as completed results.
 
 Add later prompts, corrections, validation results, and decisions to this log as the analysis progresses. The final product should retain specific examples of how follow-up prompts changed the work.
+
+## Completing the analysis and professional presentation
+
+**Prompt:** "finish all the remaining steps. make the pages look professional"
+
+Codex completed the city-only reviewer analysis, calculating both mean and median reviewer baselines. The primary specification uses reviewers with at least five reviews in the selected city/category pool. Restaurant eligibility requires a snapshot-open flag, at least 50 total reviews, and at least 20 distinct eligible reviewers. The stricter reviewer-evidence threshold retains 288 restaurants versus 304 at a ten-reviewer minimum. Alternatives test reviewer activity, restaurant review volume, distinct-reviewer counts, median baselines, raw-star ranking, and area sample-size minima of five, ten, and fifteen restaurants. An initial ten-reviewer trial ranked Cafe Porche and snowbar first on eleven eligible reviewers. The final minimum was raised to twenty to avoid a headline recommendation with that little reviewer evidence; this cutoff was chosen after exploration, and the ten-reviewer alternative remains in the sensitivity table.
+
+The final historical top 15 is led by Tito's Ceviche & Pisco, Ajun Cajun, and Restaurant August. Ward 9 leads the primary area comparison, which requires at least ten eligible restaurants per ward. Its lead is not stable across all specifications, so the report presents a conditional recommendation rather than a universal winner. Ward 13's nine eligible restaurants are explicitly shown below the area sample-size cutoff.
+
+Codex added the final ranked table, a numbered ward-boundary map, raw/adjusted comparisons, area scores and sensitivity tables, conclusions, and reproducibility checks. The visual presentation uses shared navigation, typography, colors, summary cards, readable tables, and separate report, methods, and AI-log pages. The user selected the theme, top-15 target, and comparison systems; Codex selected and justified the final analysis thresholds. These are analytical choices, not user-provided criteria.
+
+The environment audit found a dependency mismatch: the installed units package required a newer Rcpp. A compatible copy was installed in a temporary library, leaving the system library unchanged. A populated lockfile and an isolated restore test verified 50 package versions (47 project packages and three R-recommended packages) and regenerated the identical ordered top-15 IDs. Data and rendered-output checks are recorded alongside the analysis; historical operating status and the true causes of boundary mismatches have not been independently verified.

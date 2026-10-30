@@ -1,0 +1,4 @@
+Verified 50 locked packages in an independent renv library.
+Restored environment regenerated the identical ordered top-15 business IDs.
+R version: 4.4.1
+System libraries (GDAL/GEOS/PROJ) remain platform prerequisites.

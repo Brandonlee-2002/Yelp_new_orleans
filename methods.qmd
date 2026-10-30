@@ -1,0 +1,50 @@
+---
+title: "Behind the rankings"
+subtitle: "A transparent workflow from large JSON files to restaurants, reviews, and official geographic areas."
+author: "Brandon Lee"
+date: 2026-10-29
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+    css: report.css
+    include-before-body: report-nav.html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+<p class="eyebrow">Methods appendix · Full evidence and diagnostic maps</p>
+
+This appendix preserves the initial 672-restaurant descriptive pool and documents the later restriction to 656 restaurants inside Census New Orleans. Read the [main report](yelp_new_orleans_project.html) for the final top 15, reviewer-adjusted results, sensitivity analysis, and conclusions.
+
+## Data and large-file handling
+
+The business and review JSON streams were read in pages of 10,000 records. The complete review scan covered 6,990,280 records and retained 476,421 reviews for 2,259 New Orleans restaurant businesses. Category selection retained 672 businesses and 250,304 reviews; the independent city-boundary check produced the final 656-business, 249,002-review pool.
+
+Only the fields needed for rating analysis were retained. Review text and voting fields were omitted, and filtered RDS files were saved so analysis could proceed without importing the raw JSON again. The filtered records are accumulated in memory before saving; this is not a fully disk-backed import.
+
+The user reported that RStudio was unresponsive while handling the large data. Loading and verifying the smaller RDS files through a separate R process allowed work to continue without relying on the frozen session. No memory telemetry was collected, so the freeze's cause is not established. Raw JSON and local review-level RDS files are excluded from Git; the repository contains derived results and code.
+
+## Restaurant definition and theme
+
+A business initially qualifies if its Yelp city is exactly `New Orleans`, its state is `LA`, and its comma-separated categories contain the exact `Restaurants` token. A match to any of **Cajun/Creole, Seafood, Southern, or Soul Food** then places it in the cooking theme. Each business counts once in the union. Both historical open and closed flags remain in diagnostic summaries; the final ranking adds the historical open-status and evidence rules described in the main report.
+
+The label-based theme connects regional cooking traditions and seafood, but is broader than an authenticity definition. For example, a restaurant with a Seafood label can offer international cuisine. The initial city label also does not exhaust every business physically inside New Orleans: businesses labeled with another city were not recovered by that initial text filter.
+
+{{< include initial_results.qmd >}}
+
+{{< include geographic_results.qmd >}}
+
+## Reproducibility and source files
+
+Follow the [repository README](https://github.com/Brandonlee-2002/Yelp_new_orleans) to restore the locked R environment, run the scripts, and render all three pages. Final reviewer normalization, eligibility, score definitions, and sensitivity results appear in the [main report](yelp_new_orleans_project.html#what-makes-a-restaurant-best).
+
+- [Import](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R) · [Cleaning](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R)
+- [Initial analysis](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R) · [Geographic analysis](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/geography.R)
+- [Final rankings](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/rankings.R) · [Boundary provenance](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/boundaries/README.md)
+- [Environment restore checks](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/environment_restore_check.csv)
+
+<div class="portfolio-footer">Brandon Lee · Methods and reproducibility · October 29, 2026</div>

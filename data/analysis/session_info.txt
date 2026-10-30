@@ -3,7 +3,7 @@ Platform: aarch64-apple-darwin20
 Running under: macOS 26.5.2
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib
 LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
 
 locale:
@@ -13,7 +13,18 @@ time zone: America/Los_Angeles
 tzcode source: internal
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+other attached packages:
+[1] ggrepel_0.9.8 sf_1.1-0      ggplot2_4.0.2
 
 loaded via a namespace (and not attached):
-[1] compiler_4.4.1
+ [1] vctrs_0.6.5        cli_3.6.3          rlang_1.1.7        KernSmooth_2.23-24
+ [5] DBI_1.2.3          renv_1.1.8         generics_0.1.3     S7_0.2.1
+ [9] jsonlite_2.0.0     labeling_0.4.3     glue_1.7.0         e1071_1.7-17
+[13] scales_1.4.0       fansi_1.0.6        grid_4.4.1         classInt_0.4-11
+[17] tibble_3.2.1       lifecycle_1.0.4    compiler_4.4.1     dplyr_1.1.4
+[21] RColorBrewer_1.1-3 Rcpp_1.1.1         pkgconfig_2.0.3    farver_2.1.2
+[25] R6_2.5.1           class_7.3-22       tidyselect_1.2.1   utf8_1.2.4
+[29] pillar_1.9.0       magrittr_2.0.3     tools_4.4.1        withr_3.0.2
+[33] proxy_0.4-29       gtable_0.3.6       units_1.0-1

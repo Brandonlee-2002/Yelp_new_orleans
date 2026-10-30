@@ -1,0 +1,11 @@
+"scenario","best_ward","mean_score","rankable_wards"
+"Primary","Ward 9",0.0826217438037362,10
+"Reviewers: 3+","Ward 7",0.0937310366222431,10
+"Reviewers: 10+","Ward 12",0.0392444258976057,7
+"All reviews: 25+","Ward 2",0.0621049574814449,10
+"All reviews: 100+","Ward 2",0.0621049574814449,9
+"Eligible reviewers: 10+","Ward 9",0.09038984872563,10
+"Eligible reviewers: 30+","Ward 12",0.0607668141207928,9
+"Median baseline","Ward 9",-0.126161946276958,10
+"Area minimum: 5+","Ward 13",0.127716607961234,15
+"Area minimum: 15+","Ward 2",0.0621049574814449,6
