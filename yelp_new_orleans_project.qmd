@@ -10,6 +10,7 @@ format:
     css: report.css
     body-classes: story-page
     include-before-body: report-nav.html
+    include-after-body: story-motion.html
 execute:
   echo: true
   warning: false

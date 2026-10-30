@@ -4,6 +4,8 @@
 
 <p class="story-question"><strong>The question:</strong> Where can someone find the top 15 New Orleans cooking restaurants, and which geographic area is best for finding them?</p>
 
+<div class="story-controls"><nav class="story-chapters" aria-label="Visual story chapters"><a href="#from-656-restaurants-to-15-standouts"><span>01</span> Pool</a><a href="#a-four-star-review-needs-context"><span>02</span> Ratings</a><a href="#the-top-15"><span>03</span> Standouts</a><a href="#put-the-shortlist-on-the-map"><span>04</span> Map</a><a href="#the-area-winner-changes-with-the-rules"><span>05</span> Areas</a></nav><button id="story-motion-toggle" class="story-motion-toggle" type="button" aria-label="Decorative story animations" aria-pressed="false" title="Turn scroll reveals and bar animations on or off" hidden>Motion: off</button></div>
+
 ## From 656 restaurants to 15 standouts
 
 <p class="chapter-label">01 / Build a comparable pool</p>

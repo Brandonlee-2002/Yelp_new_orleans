@@ -177,3 +177,10 @@ The environment audit found a dependency mismatch: the installed units package r
 **Prompt:** "could we show the results into a visual story? it would look more appealing? would that be more professional?"
 
 Codex created a five-chapter visual narrative from the completed outputs: the restaurant selection funnel, an illustrative reviewer-baseline comparison, the top-15 ranking, the ward map, and ten area-sensitivity tiles. The full analytical report remains available on a separate Results page. Colors, labels, sample sizes, and uncertainty notes explain the evidence rather than imply new findings. Scenario counts are explicitly distinguished from probabilities or independent votes. The statistical outputs and ranking rules were preserved.
+
+
+## Adding motion to the visual story
+
+**Prompt:** "can you integrate any animations into the visual story?"
+
+Codex added one-time scroll reveals, staged selection-bar growth, light card feedback, chapter highlighting, and a reading-progress indicator. Decorative motion follows the operating system's reduced-motion preference and can be turned off using a visible control. Numbers and statistical results remain fixed; no counting animation changes the displayed evidence. All content is readable without JavaScript, and the animation enhancement is confined to the visual-story page.

@@ -2283,6 +2283,24 @@ code { overflow-wrap:anywhere; }
 .story-resource-grid span { color:var(--muted); font-size:.75rem; display:block; }
 @media(max-width:760px) { .standout-grid,.baseline-examples,.story-conclusion,.story-resource-grid { grid-template-columns:1fr; } .geography-story { grid-template-columns:1fr 1fr; } .geography-story p { grid-column:1/-1; } .story-page h2 { margin-top:2.8rem; } .funnel-row { grid-template-columns:1.1fr 1fr; gap:.6rem; } .story-funnel { padding:1rem; } .scenario-tile { padding:.9rem; } .scenario-tile>span { font-size:.68rem; } }
 @media(max-width:420px) { .scenario-grid { grid-template-columns:1fr; } .story-takeaway { align-items:flex-start; flex-direction:column; gap:.5rem; } }
+
+.story-controls { position:sticky; top:.5rem; z-index:25; display:flex; flex-wrap:wrap; align-items:center; gap:.55rem; padding:.65rem; margin:1.4rem 0 2rem; border:1px solid var(--line); border-radius:8px; background:rgba(250,251,248,.98); box-shadow:0 3px 14px rgba(23,61,67,.06); }
+.story-chapters { display:flex; flex:1 1 23rem; gap:.25rem; overflow-x:auto; min-width:0; }
+.story-chapters a { display:block; flex:1 0 auto; padding:.4rem .5rem; border-radius:5px; font-size:.71rem; color:var(--muted); white-space:nowrap; text-decoration:none; }
+.story-chapters a span { font-size:.63rem; opacity:.8; margin-right:.2rem; }
+.story-chapters a[aria-current="step"] { background:#e2eeea; color:var(--teal); font-weight:750; }
+.story-chapters a:focus-visible,.story-motion-toggle:focus-visible { outline:2px solid var(--teal); outline-offset:2px; }
+.story-motion-toggle { flex:0 0 auto; cursor:pointer; border:1px solid var(--line); border-radius:5px; padding:.4rem .55rem; background:white; color:var(--teal); font-size:.67rem; font-weight:650; }
+.story-motion-toggle[hidden] { display:none; }
+.story-reading-progress { position:fixed; inset:0 0 auto; height:3px; z-index:100; pointer-events:none; background:transparent; }
+.story-reading-progress span { display:block; width:100%; height:100%; background:var(--teal); transform:scaleX(0); transform-origin:left; }
+.story-page section.level2 { scroll-margin-top:7rem; }
+.story-page .funnel-bar { transform-origin:left; }
+.story-page[data-motion="on"] .standout-card { transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
+.story-page[data-motion="on"] .standout-card:hover { transform:translateY(-3px); box-shadow:0 7px 18px rgba(23,61,67,.08); }
+@media(prefers-reduced-motion:reduce) { .story-page .standout-card { transition:none !important; } .story-page[data-motion="on"] .standout-card:hover { transform:none; } }
+@media(max-width:760px) { .story-controls { top:.25rem; padding:.45rem; } .story-chapters { flex-basis:100%; } .story-motion-toggle { margin-left:auto; } .story-page section.level2 { scroll-margin-top:8rem; } }
+@media print { .story-controls,.story-reading-progress { display:none; } }
 </style>
 </head>
 
@@ -2340,6 +2358,14 @@ The strongest individual restaurants are spread across <strong>11 wards</strong>
 <p class="story-question">
 <strong>The question:</strong> Where can someone find the top 15 New Orleans cooking restaurants, and which geographic area is best for finding them?
 </p>
+<div class="story-controls">
+<nav class="story-chapters" aria-label="Visual story chapters">
+<a href="#from-656-restaurants-to-15-standouts"><span>01</span> Pool</a><a href="#a-four-star-review-needs-context"><span>02</span> Ratings</a><a href="#the-top-15"><span>03</span> Standouts</a><a href="#put-the-shortlist-on-the-map"><span>04</span> Map</a><a href="#the-area-winner-changes-with-the-rules"><span>05</span> Areas</a>
+</nav>
+<button id="story-motion-toggle" class="story-motion-toggle" type="button" aria-label="Decorative story animations" aria-pressed="false" title="Turn scroll reveals and bar animations on or off" hidden>
+Motion: off
+</button>
+</div>
 <section id="from-656-restaurants-to-15-standouts" class="level2">
 <h2 class="anchored" data-anchor-id="from-656-restaurants-to-15-standouts">From 656 restaurants to 15 standouts</h2>
 <p class="chapter-label">
@@ -2606,6 +2632,114 @@ Brandon Lee · New Orleans restaurant research · Data through January 2022 · A
 
 </main>
 <!-- /main column -->
+<script>
+(() => {
+  'use strict';
+  if (!document.body.classList.contains('story-page')) return;
+  const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const button = document.getElementById('story-motion-toggle');
+  const links = Array.from(document.querySelectorAll('.story-chapters a'));
+  const chapters = links.map(link => document.getElementById(link.hash.slice(1)));
+  const supported = typeof Element.prototype.animate === 'function' && 'IntersectionObserver' in window;
+  const running = new Set();
+  const seen = new WeakSet();
+  let enabled = supported && !preference.matches;
+  let queued = false;
+  let observer;
+
+  // Contents and numeric values remain static; animation only decorates entry.
+  const targets = Array.from(document.querySelectorAll(
+    'main.content h2, .baseline-card, .standout-card, .story-takeaway, ' +
+    '.scenario-tile, .story-conclusion > div, main.content figure, .funnel-bar'
+  ));
+  const tiles = Array.from(document.querySelectorAll('.scenario-tile'));
+  const cards = Array.from(document.querySelectorAll('.standout-card'));
+  const bars = Array.from(document.querySelectorAll('.funnel-bar'));
+  function cancelMotion() {
+    running.forEach(animation => animation.cancel());
+    running.clear();
+  }
+  function reveal(element) {
+    if (!enabled || seen.has(element)) return;
+    seen.add(element);
+    if (observer) observer.unobserve(element);
+    const isBar = element.classList.contains('funnel-bar');
+    const delay = isBar ? bars.indexOf(element) * 100 :
+      tiles.includes(element) ? Math.min(tiles.indexOf(element) * 55, 330) :
+      cards.includes(element) ? cards.indexOf(element) * 100 : 0;
+    const frames = isBar ? [
+      { transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }
+    ] : [
+      { opacity: 0, transform: 'translateY(12px)' },
+      { opacity: 1, transform: 'translateY(0)' }
+    ];
+    const animation = element.animate(frames, {
+      duration: isBar ? 950 : 520, delay,
+      easing: 'cubic-bezier(.2,.7,.25,1)', fill: 'backwards'
+    });
+    running.add(animation);
+    animation.onfinish = animation.oncancel = () => running.delete(animation);
+  }
+  function revealVisible() {
+    targets.forEach(element => {
+      const box = element.getBoundingClientRect();
+      if (box.bottom > 0 && box.top < window.innerHeight * .94) reveal(element);
+    });
+  }
+  function setMotion(value) {
+    enabled = supported && value;
+    document.body.dataset.motion = enabled ? 'on' : 'off';
+    if (button) {
+      button.textContent = enabled ? 'Motion: on' : 'Motion: off';
+      button.setAttribute('aria-pressed', String(enabled));
+    }
+    if (!enabled) cancelMotion();
+    else revealVisible();
+  }
+  if (supported) {
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
+    }, { threshold: .14, rootMargin: '0px 0px -24px 0px' });
+    targets.forEach(element => observer.observe(element));
+    if (button) {
+      button.addEventListener('click', () => setMotion(!enabled));
+      button.hidden = false;
+    }
+  }
+  const progress = document.createElement('div');
+  progress.className = 'story-reading-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  const fill = document.createElement('span');
+  progress.appendChild(fill);
+  document.body.appendChild(progress);
+  function updateReadingPosition() {
+    queued = false;
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const fraction = Math.max(0, Math.min(1, window.scrollY / max));
+    fill.style.transform = `scaleX(${fraction})`;
+    let active = 0;
+    chapters.forEach((chapter, index) => {
+      if (chapter && chapter.getBoundingClientRect().top <= window.innerHeight * .28) active = index;
+    });
+    links.forEach((link, index) => {
+      if (index === active) link.setAttribute('aria-current', 'step');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  function scheduleUpdate() {
+    if (!queued) { queued = true; window.requestAnimationFrame(updateReadingPosition); }
+  }
+  window.addEventListener('scroll', scheduleUpdate, { passive: true });
+  window.addEventListener('resize', scheduleUpdate, { passive: true });
+  window.addEventListener('load', scheduleUpdate, { once: true });
+  window.addEventListener('pagehide', cancelMotion);
+  const changedPreference = () => setMotion(!preference.matches);
+  if (preference.addEventListener) preference.addEventListener('change', changedPreference);
+  else if (preference.addListener) preference.addListener(changedPreference);
+  setMotion(enabled);
+  updateReadingPosition();
+})();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

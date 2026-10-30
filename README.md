@@ -24,7 +24,7 @@ The final analysis covers **656 city-contained restaurants and 249,002 reviews**
 
 This is **Option 2: README plus a rendered HTML report**, hosted on GitHub Pages. The visual story, results page, methods appendix, and AI log are already rendered; readers do not need to run R or Quarto. For a local copy, download the repository and open `docs/index.html` in a browser.
 
-The visual story guides readers through the selection funnel, reviewer adjustment, standouts, map, and area uncertainty. The full results page contains the ranked table, definitions, sensitivity comparisons, and limitations. The methods appendix contains category counts and overlaps, data-quality checks, joins, source documentation, geographic comparisons, and diagnostic maps.
+The visual story guides readers through the selection funnel, reviewer adjustment, standouts, map, and area uncertainty. Optional scroll reveals and selection-bar animations follow reduced-motion preferences and can be disabled with the Motion control; chapter links and a reading-progress indicator support navigation. The full results page contains the ranked table, definitions, sensitivity comparisons, and limitations. The methods appendix contains category counts and overlaps, data-quality checks, joins, source documentation, geographic comparisons, and diagnostic maps.
 
 ## Data and decisions
 
