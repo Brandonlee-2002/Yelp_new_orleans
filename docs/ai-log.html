@@ -2331,6 +2331,7 @@ code { overflow-wrap:anywhere; }
 .story-reading-progress span { display:block; width:100%; height:100%; background:var(--teal); transform:scaleX(0); transform-origin:left; }
 .story-page section.level2 { scroll-margin-top:7rem; }
 .story-page .funnel-bar { transform-origin:left; }
+.story-page .baseline-examples { overflow:hidden; }
 .story-page[data-motion="on"] .standout-card { transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
 .story-page[data-motion="on"] .standout-card:hover { transform:translateY(-3px); box-shadow:0 7px 18px rgba(23,61,67,.08); }
 @media(prefers-reduced-motion:reduce) { .story-page .standout-card { transition:none !important; } .story-page[data-motion="on"] .standout-card:hover { transform:none; } }
@@ -2359,6 +2360,7 @@ code { overflow-wrap:anywhere; }
   <li><a href="#completing-the-analysis-and-professional-presentation" id="toc-completing-the-analysis-and-professional-presentation" class="nav-link" data-scroll-target="#completing-the-analysis-and-professional-presentation">Completing the analysis and professional presentation</a></li>
   <li><a href="#presenting-the-results-as-a-visual-story" id="toc-presenting-the-results-as-a-visual-story" class="nav-link" data-scroll-target="#presenting-the-results-as-a-visual-story">Presenting the results as a visual story</a></li>
   <li><a href="#adding-motion-to-the-visual-story" id="toc-adding-motion-to-the-visual-story" class="nav-link" data-scroll-target="#adding-motion-to-the-visual-story">Adding motion to the visual story</a></li>
+  <li><a href="#giving-each-chapter-a-distinct-motion-treatment" id="toc-giving-each-chapter-a-distinct-motion-treatment" class="nav-link" data-scroll-target="#giving-each-chapter-a-distinct-motion-treatment">Giving each chapter a distinct motion treatment</a></li>
   </ul>
 </nav>
 </div>
@@ -2551,6 +2553,11 @@ Error: object &#39;name&#39; not found</code></pre>
 <h2 class="anchored" data-anchor-id="adding-motion-to-the-visual-story">Adding motion to the visual story</h2>
 <p><strong>Prompt:</strong> “can you integrate any animations into the visual story?”</p>
 <p>Codex added one-time scroll reveals, staged selection-bar growth, light card feedback, chapter highlighting, and a reading-progress indicator. Decorative motion follows the operating system’s reduced-motion preference and can be turned off using a visible control. Numbers and statistical results remain fixed; no counting animation changes the displayed evidence. All content is readable without JavaScript, and the animation enhancement is confined to the visual-story page.</p>
+</section>
+<section id="giving-each-chapter-a-distinct-motion-treatment" class="level2">
+<h2 class="anchored" data-anchor-id="giving-each-chapter-a-distinct-motion-treatment">Giving each chapter a distinct motion treatment</h2>
+<p><strong>Prompt:</strong> “Can you have each section have a unique type of animation?”</p>
+<p>Codex assigned content-specific, one-time animations: horizontal growth for selection bars, opposing slides for reviewer examples, staggered card entrances for standouts, an aperture reveal for the static ward map, and a row-by-row hinge reveal for sensitivity tiles. Chapter headings retain a quiet fade. Pause/cancel and reduced-motion behavior apply to every treatment. Map locations, numeric evidence, and the statistical outputs remain fixed.</p>
 </section>
 
 </main>

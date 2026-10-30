@@ -2296,6 +2296,7 @@ code { overflow-wrap:anywhere; }
 .story-reading-progress span { display:block; width:100%; height:100%; background:var(--teal); transform:scaleX(0); transform-origin:left; }
 .story-page section.level2 { scroll-margin-top:7rem; }
 .story-page .funnel-bar { transform-origin:left; }
+.story-page .baseline-examples { overflow:hidden; }
 .story-page[data-motion="on"] .standout-card { transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease; }
 .story-page[data-motion="on"] .standout-card:hover { transform:translateY(-3px); box-shadow:0 7px 18px rgba(23,61,67,.08); }
 @media(prefers-reduced-motion:reduce) { .story-page .standout-card { transition:none !important; } .story-page[data-motion="on"] .standout-card:hover { transform:none; } }
@@ -2655,6 +2656,7 @@ Brandon Lee · New Orleans restaurant research · Data through January 2022 · A
   const tiles = Array.from(document.querySelectorAll('.scenario-tile'));
   const cards = Array.from(document.querySelectorAll('.standout-card'));
   const bars = Array.from(document.querySelectorAll('.funnel-bar'));
+  const baselines = Array.from(document.querySelectorAll('.baseline-card'));
   function cancelMotion() {
     running.forEach(animation => animation.cancel());
     running.clear();
@@ -2663,18 +2665,56 @@ Brandon Lee · New Orleans restaurant research · Data through January 2022 · A
     if (!enabled || seen.has(element)) return;
     seen.add(element);
     if (observer) observer.unobserve(element);
-    const isBar = element.classList.contains('funnel-bar');
-    const delay = isBar ? bars.indexOf(element) * 100 :
-      tiles.includes(element) ? Math.min(tiles.indexOf(element) * 55, 330) :
-      cards.includes(element) ? cards.indexOf(element) * 100 : 0;
-    const frames = isBar ? [
-      { transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }
-    ] : [
-      { opacity: 0, transform: 'translateY(12px)' },
-      { opacity: 1, transform: 'translateY(0)' }
-    ];
+    const chapter = element.closest('section.level2')?.id || '';
+    let frames = [{ opacity: 0 }, { opacity: 1 }];
+    let duration = 460;
+    let delay = 0;
+    let style = 'quiet-fade';
+    if (element.classList.contains('funnel-bar')) {
+      // 01: growth along the quantitative axis; labels always show final counts.
+      style = 'selection-growth';
+      frames = [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }];
+      duration = 950;
+      delay = Math.max(0, bars.indexOf(element)) * 110;
+    } else if (element.classList.contains('baseline-card')) {
+      // 02: opposing directions distinguish the two scoring habits.
+      style = 'reviewer-comparison';
+      const direction = baselines.indexOf(element) % 2 === 0 ? -1 : 1;
+      frames = [{ opacity: 0, transform: `translateX(${direction * 24}px)` },
+                { opacity: 1, transform: 'translateX(0)' }];
+      duration = 650;
+    } else if (element.classList.contains('standout-card')) {
+      // 03: a small, staggered card deal introduces the three standouts.
+      style = 'standout-deal';
+      const index = Math.max(0, cards.indexOf(element));
+      frames = [{ opacity: 0, transform: `translateY(25px) rotate(${index % 2 ? 1.2 : -1.2}deg)` },
+                { opacity: 1, transform: 'translateY(-3px) rotate(0deg)', offset: .82 },
+                { opacity: 1, transform: 'translateY(0) rotate(0deg)' }];
+      duration = 720;
+      delay = index * 130;
+    } else if (chapter === 'put-the-shortlist-on-the-map' && element.tagName === 'FIGURE') {
+      // 04: open an aperture over the intact static map; no locations move.
+      style = 'map-aperture';
+      frames = [{ opacity: .3, clipPath: 'inset(44% 44% 44% 44% round 12px)' },
+                { opacity: 1, clipPath: 'inset(0% 0% 0% 0% round 0px)' }];
+      duration = 1050;
+    } else if (element.classList.contains('scenario-tile')) {
+      // 05: a row-by-row hinge reveal makes the sensitivity comparisons distinct.
+      style = 'scenario-hinge';
+      const index = Math.max(0, tiles.indexOf(element));
+      frames = [{ opacity: 0, transform: 'perspective(900px) rotateX(-28deg)', transformOrigin: 'top' },
+                { opacity: 1, transform: 'perspective(900px) rotateX(0deg)', transformOrigin: 'top' }];
+      duration = 620;
+      delay = Math.floor(index / 2) * 85 + (index % 2) * 55;
+    } else if (chapter === 'the-top-15' && element.tagName === 'FIGURE') {
+      frames = [{ opacity: .3, clipPath: 'inset(0% 100% 0% 0%)' },
+                { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)' }];
+      style = 'ranking-wipe';
+      duration = 850;
+    }
+    element.dataset.motionStyle = style;
     const animation = element.animate(frames, {
-      duration: isBar ? 950 : 520, delay,
+      duration, delay,
       easing: 'cubic-bezier(.2,.7,.25,1)', fill: 'backwards'
     });
     running.add(animation);

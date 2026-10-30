@@ -184,3 +184,10 @@ Codex created a five-chapter visual narrative from the completed outputs: the re
 **Prompt:** "can you integrate any animations into the visual story?"
 
 Codex added one-time scroll reveals, staged selection-bar growth, light card feedback, chapter highlighting, and a reading-progress indicator. Decorative motion follows the operating system's reduced-motion preference and can be turned off using a visible control. Numbers and statistical results remain fixed; no counting animation changes the displayed evidence. All content is readable without JavaScript, and the animation enhancement is confined to the visual-story page.
+
+
+## Giving each chapter a distinct motion treatment
+
+**Prompt:** "Can you have each section have a unique type of animation?"
+
+Codex assigned content-specific, one-time animations: horizontal growth for selection bars, opposing slides for reviewer examples, staggered card entrances for standouts, an aperture reveal for the static ward map, and a row-by-row hinge reveal for sensitivity tiles. Chapter headings retain a quiet fade. Pause/cancel and reduced-motion behavior apply to every treatment. Map locations, numeric evidence, and the statistical outputs remain fixed.
