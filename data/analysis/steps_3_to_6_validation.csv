@@ -1,0 +1,13 @@
+"check","passed"
+"city_business_ids_unique",TRUE
+"city_review_ids_unique",TRUE
+"city_reviews_match_businesses",TRUE
+"city_reviews_are_complete",TRUE
+"original_join_preserves_reviews",TRUE
+"zcta_join_preserves_businesses",TRUE
+"ward_join_preserves_businesses",TRUE
+"zcta_counts_match_assignments",TRUE
+"ward_counts_match_assignments",TRUE
+"zcta_seven_areas",TRUE
+"ward_seven_areas",TRUE
+"selected_at_least_ten",TRUE

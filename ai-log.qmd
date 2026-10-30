@@ -127,6 +127,16 @@ Codex visually inspected the three exported plots and added the results to the r
 
 Codex prepared publishing from `main` and `docs/`, added a site-root redirect, and changed report links to repository files so they work on the hosted site. The README links to the hosted report and AI log. The rendered HTML is published without uploading the raw data or running the R analysis on GitHub.
 
+## Completing steps 3–6 and auditing deliverables
+
+**Prompt:** "Can you finish steps 3 to 6? Double check what else needs to be done as well."
+
+Codex checked the instructor's steps, documented category counts and co-occurrence, and saved an explicit review-level many-to-one join with unchanged row counts and no unmatched businesses. It downloaded Census 2020 place/ZCTA boundaries and the official City of New Orleans ward layer, then used `sf` spatial joins to compare coverage.
+
+The official city check identified 16 theme businesses outside Census New Orleans. Codex preserved them in a mismatch audit and selected 656 city-contained restaurants (249,002 reviews) for a like-for-like geographic comparison. Both systems had 17 populated areas. Wards were selected for the main comparison based on sample-size balance, with ZCTAs retained as a comparison. Two lakefront points approximately 13–16 metres outside the nearest ward remained unassigned; no snapping was used. Saved boundaries, source metadata, and checksums document the input versions.
+
+Codex generated full-city and detail maps, count and raw-rating plots, area summaries, and a requirement-by-requirement audit. The next steps remain reviewer normalization, ranking eligibility and sensitivity, the top-15 table/map, final conclusions, and a tested package lockfile. Initial descriptive results retain the original 672-restaurant scope and are clearly separated from the stricter geographic results.
+
 ## Responsibility and remaining work
 
 **Layout correction:** The user reported that the category table overlapped the side navigation. Codex shortened display headings and contained tables in keyboard-accessible scrolling regions. CSV column names and analysis values remain unchanged.
@@ -135,6 +145,6 @@ Codex prepared publishing from `main` and `docs/`, added a site-root redirect, a
 
 Codex organized the README as the portfolio landing page, added viewing and reproduction instructions, and linked it to the rendered report and separate AI log in `docs/`. Source-code and CSV links accompany the results. The report continues to identify unfinished rankings and geographic work.
 
-The user selected the theme, requested the top 15, and selected ZCTAs and wards. Codex assisted with code, data filtering, descriptive analysis, documentation, explanations, and output checks. Final ranking eligibility, review-volume threshold selection, reviewer-adjusted ratings, geographic comparisons, maps, and final conclusions remain unfinished. Suggested methods are not presented as completed results.
+The user selected the theme, requested the top 15, and selected ZCTAs and wards. Codex assisted with code, data filtering, descriptive analysis, documentation, explanations, and output checks. Final ranking eligibility, review-volume threshold selection, reviewer-adjusted ratings, the final top-15 map, and final conclusions remain unfinished. The geographic-system comparison and supporting maps are complete. Suggested methods are not presented as completed results.
 
 Add later prompts, corrections, validation results, and decisions to this log as the analysis progresses. The final product should retain specific examples of how follow-up prompts changed the work.

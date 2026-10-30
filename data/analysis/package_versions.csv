@@ -1,0 +1,5 @@
+"package","version"
+"jsonlite","2.0.0"
+"ggplot2","4.0.2"
+"sf","1.1.0"
+"tigris","2.2.1"

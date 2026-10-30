@@ -1,0 +1,26 @@
+[
+  {
+    "file": "louisiana_places_2020.geojson",
+    "provider": "U.S. Census Bureau",
+    "description": "2020 TIGER/Line Louisiana places",
+    "source_url": "https://www2.census.gov/geo/tiger/TIGER2020/PLACE/tl_2020_22_place.zip",
+    "downloaded": "2026-10-29",
+    "sha256": "9a9f425e7ba7981931ea67b00756f53453bfa5124e8ff7304530ee4abf4e7275"
+  },
+  {
+    "file": "zctas_2020_prefix70.geojson",
+    "provider": "U.S. Census Bureau",
+    "description": "2020 cartographic ZCTAs, 1:500,000; prefix 70 saved",
+    "source_url": "https://www2.census.gov/geo/tiger/GENZ2020/shp/cb_2020_us_zcta520_500k.zip",
+    "downloaded": "2026-10-29",
+    "sha256": "b4002d9837d2a8161c6590428a1cc82d67434cf7e9e9d32f6bbed79878e60370"
+  },
+  {
+    "file": "new_orleans_wards.geojson",
+    "provider": "City of New Orleans Enterprise GIS",
+    "description": "Administrative Layers, Wards layer 3; effective date unspecified",
+    "source_url": "https://maps.nola.gov/server/rest/services/Administrative/Administrative_Layers/MapServer/3",
+    "downloaded": "2026-10-29",
+    "sha256": "2cd550b0e06da48132a7de9ea4185058037f8e90ef6021c5a3871ee922a86930"
+  }
+]

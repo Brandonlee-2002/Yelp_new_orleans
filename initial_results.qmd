@@ -90,4 +90,4 @@ Activity counts use reviews within the selected category group. This table shows
 
 ### What remains
 
-Choose and justify the restaurant and reviewer eligibility rules, calculate reviewer-adjusted scores, compare ZCTAs and wards using official boundaries, verify seven-area coverage, and select the final top 15. None of the plots or tables above is a final ranking or geographic result.
+This initial section preserves the original 672-restaurant subset. The steps 3–6 section below completes the city-boundary and ZCTA/ward comparisons using the resulting 656 city-contained restaurants. Final eligibility rules, reviewer-adjusted scores, and the top 15 remain outstanding; the plots above are descriptive rather than final rankings.

@@ -30,12 +30,14 @@ Use businesses with Yelp city `New Orleans`, state `LA`, and the exact `Restaura
 
 The category overlaps support examining these labels as one related group. Matching all four labels is not required.
 
-## Pending analysis decisions
+## Completed geographic comparison and remaining decisions
 
 Filtering the complete review file (6,990,280 records) retained **250,304 reviews** for the 672 selected restaurants. Every selected restaurant has reviews and coordinates. Of these businesses, **435 are marked open** in the historical snapshot; this does not verify current operating status. Selected review dates span March 2005 through January 2022. Full filter metrics are saved in `data/new_orleans/cooking_filter_summary.json`.
 
-- Compare the selected systems: **ZIP Code Tabulation Areas (ZCTAs) and New Orleans wards**. Assign restaurant coordinates to official boundaries for each system, then compare restaurant counts, unmatched locations, ratings, and small-area sample sizes. Yelp postal codes alone do not establish ZCTA membership.
-- Choose the final geographic system after this comparison and confirm at least seven areas contain qualifying restaurants.
+- **City-boundary check complete:** 656 theme restaurants and 249,002 reviews remain inside Census New Orleans; 16 outside-city restaurants are retained in the mismatch audit. City-contained category counts are Cajun/Creole 398, Seafood 320, Southern 150, and Soul Food 69.
+- **Seven-area requirement met:** the city-contained group occupies 17 ZCTAs and all 17 wards.
+- **Main geography: wards.** Wards have a median of 25 restaurants per populated area versus 16 for ZCTAs; only one ward has fewer than 10 restaurants versus five populated ZCTAs. Wards assign 654 of 656 locations; two lakefront points remain unmatched and are documented. ZCTAs assign all 656 and remain the sensitivity comparison.
+- See `data/analysis/geography_comparison.csv`, `data/analysis/category_by_area.csv`, and the report for maps, area summaries, scope decisions, and source dates.
 - Define “best” using review volume, raw ratings, and reviewer-adjusted scores before selecting the top 15.
 - Decide whether the final recommendation ranking should exclude businesses marked closed in this historical dataset.
 - Produce a final table of 15 restaurants and a boundary map showing their locations.

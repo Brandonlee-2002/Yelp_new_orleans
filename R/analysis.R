@@ -1,5 +1,5 @@
 # Run from the repository root: Rscript R/analysis.R
-# Descriptive analysis only: no final ranking or geographic assignments yet.
+# Initial descriptive analysis. Run R/geography.R afterward for steps 3-6.
 source("R/clean.R")
 stopifnot(requireNamespace("ggplot2", quietly = TRUE))
 library(ggplot2)
@@ -126,24 +126,8 @@ save_plot(ggplot(summary, aes(x = available_reviews, y = mean_review_stars,
   "cooking_ratings_review_volume.png")
 
 # Generate a report section from actual results, so it updates on reruns.
-md_table <- function(x) {
-  labels <- c(dataset = "Dataset", column = "Column", missing_na = "NA values",
-    blank_text = "Blank fields", category = "Category", restaurants = "Restaurants",
-    marked_open = "Marked open", mean_business_stars = "Mean stars",
-    median_available_reviews = "Median reviews", available_reviews = "Total reviews",
-    metric = "Measure", minimum = "Min", q1 = "Q1", median = "Median", mean = "Mean",
-    q3 = "Q3", maximum = "Max", minimum_available_reviews = "Min reviews",
-    marked_open_restaurants = "Marked open", minimum_category_reviews = "Min reviews per reviewer",
-    reviewers = "Reviewers", retained_reviews = "Reviews retained", percent_reviews = "Reviews retained (%)")
-  headings <- unname(labels[names(x)])
-  headings[is.na(headings)] <- names(x)[is.na(headings)]
-  x[] <- lapply(x, function(v) if (is.numeric(v)) format(round(v, 2), big.mark = ",", trim = TRUE) else as.character(v))
-  c('::: {.report-table tabindex="0" role="region" aria-label="Scrollable data table"}', "",
-    paste0("| ", paste(headings, collapse = " | "), " |"),
-    paste0("| ", paste(rep("---", ncol(x)), collapse = " | "), " |"),
-    apply(x, 1, function(row) paste0("| ", paste(row, collapse = " | "), " |")),
-    "", ":::")
-}
+source("R/report_helpers.R")
+
 nonzero <- quality[quality$missing_na > 0 | quality$blank_text > 0, ]
 missing_text <- if (!nrow(nonzero)) {
   "No NA values or blank text fields were found in the retained restaurant and review columns."
@@ -177,6 +161,6 @@ lines <- c("## Initial descriptive results", "",
   "Activity counts use reviews within the selected category group. This table shows how much data remains at different reviewer thresholds; no reviewer-adjusted scores have been calculated yet.", "",
   md_table(reviewer_thresholds), "",
   "### What remains", "",
-  "Choose and justify the restaurant and reviewer eligibility rules, calculate reviewer-adjusted scores, compare ZCTAs and wards using official boundaries, verify seven-area coverage, and select the final top 15. None of the plots or tables above is a final ranking or geographic result.")
+  "This initial section preserves the original 672-restaurant subset. The steps 3–6 section below completes the city-boundary and ZCTA/ward comparisons using the resulting 656 city-contained restaurants. Final eligibility rules, reviewer-adjusted scores, and the top 15 remain outstanding; the plots above are descriptive rather than final rankings.")
 writeLines(lines, "initial_results.qmd")
 message("Saved descriptive tables, three plots, and initial_results.qmd.")

@@ -1,0 +1,3 @@
+"system","boundary_areas","populated_areas","assigned","unmatched","boundary_points","smallest_count","smallest_populated_count","largest_count","median_populated_count","areas_under_10","empty_areas","seven_area_requirement"
+"ZCTA",35,22,665,7,0,0,1,213,13.5,23,13,TRUE
+"Ward",17,17,654,18,0,5,5,116,25,1,0,TRUE
