@@ -15,23 +15,29 @@ execute:
 
 ## Research question
 
+[Portfolio README](../README.md) · [AI assistance log](ai-log.html) · [Report source](../yelp_new_orleans_project.qmd)
+
 Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?
 
 ## Executive summary
 
-_Write after completing the analysis._
+Initial analysis covers **672 restaurants and 250,304 reviews** in the New Orleans cooking theme. There are no NA values in the retained columns, but seven restaurants have blank street addresses. Published business ratings average 3.82 stars, and available review counts range from 5 to 7,673 per restaurant. The top 15 and best geographic area have not yet been determined.
 
 ## Data and large-file handling
 
-_Document the Yelp files, boundary sources, import strategy, memory constraints, and filtered outputs._
+The import scans the complete Yelp business and review JSON files in pages, filters New Orleans restaurants, and retains only the review columns needed for ratings analysis. It saves compressed RDS files so subsequent analysis does not reload the raw JSON. Filtered reviews are accumulated in memory; this is not a fully disk-backed workflow. Review text and voting fields are omitted. The selected review records span March 14, 2005 through January 19, 2022.
+
+Run `Rscript R/analysis.R` from the repository root to reproduce the descriptive tables and figures using the saved theme RDS files. This script uses `ggplot2`. See the [restaurant summary](../data/analysis/restaurant_summary.csv), [missing-value audit](../data/analysis/missing_values.csv), [restaurants with blank addresses](../data/analysis/restaurants_missing_addresses.csv), and [validation checks](../data/analysis/validation_checks.csv).
 
 ## Restaurant definition and cleaning
 
-Filter to Yelp city `New Orleans`, state `LA`, and exact category token `Restaurants`. Keep both open and closed businesses for the initial historical subset, retain coordinates for later spatial joins, and convert empty postal codes to missing values. See `R/clean.R` and `R/import.R`.
+Filter to Yelp city `New Orleans`, state `LA`, and exact category token `Restaurants`. Keep both open and closed businesses for the initial historical subset, retain coordinates for later spatial joins, and convert empty postal codes to missing values. See the [cleaning code](../R/clean.R) and [import code](../R/import.R).
 
 ## Category selection
 
-Selected theme: **New Orleans cooking**. Include restaurants matching at least one of `Cajun/Creole`, `Seafood`, `Southern`, or `Soul Food`; count each business once. The planned final ranking contains **15 restaurants**. See [category selection](CATEGORY_SELECTION.md) for counts and co-occurrence evidence.
+Selected theme: **New Orleans cooking**. Include restaurants matching at least one of `Cajun/Creole`, `Seafood`, `Southern`, or `Soul Food`; count each business once. The planned final ranking contains **15 restaurants**. See [category selection](../CATEGORY_SELECTION.md) for counts and co-occurrence evidence.
+
+{{< include initial_results.qmd >}}
 
 ## Geographic comparison
 
@@ -43,4 +49,17 @@ Compare raw business ratings with reviewer-adjusted results, establish review-vo
 
 ## Conclusions and limitations
 
-_Summarize the evidence and limitations._
+The descriptive results establish the analysis pool and identify blank addresses and uneven review volume. Category memberships overlap, so category averages do not establish independent cuisine effects. Open-status flags and reviews describe a historical snapshot ending in January 2022. Ranking eligibility, reviewer normalization, ZCTA and ward comparisons, a final map, and the top 15 remain unfinished.
+
+## AI assistance log
+
+[Read the separate AI assistance log](ai-log.html) for specific prompts, follow-up corrections, AI-supported work, and verification status. Its source is `ai-log.qmd`.
+
+## Portfolio files and source code
+
+The [README](../README.md) is the portfolio landing page. This rendered report provides the detailed results without requiring the reader to execute R. Download the repository and open this HTML file in a browser to view it locally.
+
+- [Analysis code](../R/analysis.R)
+- [Report source](../yelp_new_orleans_project.qmd)
+- [Generated descriptive results](../initial_results.qmd)
+- [AI log source](../ai-log.qmd)

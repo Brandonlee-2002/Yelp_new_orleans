@@ -1,0 +1,132 @@
+---
+title: "AI Assistance Log"
+subtitle: "Yelp New Orleans Restaurant Analysis"
+author: "Brandon Lee"
+format:
+  html:
+    toc: true
+    embed-resources: true
+---
+
+This log documents how Codex assisted with project planning, data preparation, and R troubleshooting. It records selected prompts from the project conversation, follow-up instructions, resulting work, and remaining verification. It is a curated record rather than a complete chat transcript. Last updated: October 29, 2026.
+
+## Category exploration and a more specific prompt
+
+**Initial prompt:**
+
+> Using the Inference folder, give me all the categories that can answer the research question:
+>
+> Where can someone find the best restaurants in a selected category in New Orleans, and which geographic area is best for finding them?
+
+**Follow-up prompt:**
+
+> Using the Inference folder, give me all the categories from the raw data folder that can answer the research question:
+>
+> Where can someone find the best restaurants in a selected category in New Orleans, and which geographic area is best for finding them?
+
+The follow-up specified that the category list should come from the local raw data. Codex read the assignment instructions and extracted category tokens from the complete business JSON, restricting the inventory to New Orleans restaurant businesses. It produced a category inventory with counts and suggested related themes. The inventory contained 2,259 restaurants and 300 comma-separated category tokens, including incidental labels attached to restaurant records.
+
+**Evidence:** [Category inventory](../CATEGORY_INVENTORY.md) and [CSV inventory](../data/new_orleans/category_inventory.csv). Counts reflect the documented filtering and comma-splitting rules; tokens are not guaranteed to be separate canonical Yelp categories.
+
+## Selecting the theme and changing the ranking size
+
+**Prompt:**
+
+> Lets use the theme "New Orleans cooking" as the analysis. Lets go with the top 15 restaurants. We can decide on the geographical areas after filtering the data
+
+The user selected the theme and changed the target from the assignment's top 10 to **top 15**. Codex implemented the theme using the previously proposed categories: **Cajun/Creole, Seafood, Southern, and Soul Food**. Inclusion requires at least one of those exact category tokens, together with the `Restaurants` token, city `New Orleans`, and state `LA`. Each business counts once in the combined group.
+
+Codex wrote the import and cleaning workflow in `R/import.R` and `R/clean.R`. The import reads the complete JSON files in pages, retains the necessary columns, and saves filtered RDS files. It retained **672 theme restaurants and 250,304 reviews**. Both open and closed businesses were retained initially.
+
+**Verification performed:** Codex loaded the saved RDS files with a separate R process, checked business and review ID uniqueness, confirmed that reviews link to the selected businesses, and verified that every selected restaurant has reviews and coordinates. These checks do not establish the best restaurants or current operating status.
+
+**Evidence:** [Selection decisions](../CATEGORY_SELECTION.md), [filter summary](../data/new_orleans/cooking_filter_summary.json), [import code](../R/import.R), and [cleaning code](../R/clean.R).
+
+## Clarifying geographic coverage and selecting comparison systems
+
+**Clarification prompts:**
+
+> WHat do you mean by geographic coverage and best restaurants or areas?
+
+> Can you give me a list of all the geographical coverages?
+
+Codex explained the difference between identifying individual restaurants and comparing areas. It listed the five systems in the assignment: ZCTAs, census tracts, census block groups, Neighborhood Statistical Areas, and wards.
+
+**Decision prompt:**
+
+> lets use ZIP codes and Wards
+
+The user selected the two geographic systems to compare. Codex recorded **ZIP Code Tabulation Areas (ZCTAs) and New Orleans wards** in the project files. ZCTA assignment will use restaurant coordinates and boundary polygons rather than Yelp postal labels alone.
+
+**Status:** Boundary data acquisition, spatial joins, area summaries, and verification of the seven-area requirement remain pending. No final geographic system has been chosen.
+
+## Working around an unresponsive RStudio session
+
+**Prompt:**
+
+> I already did steps 1 and 2, can you help me do steps 3 and 4? Rstudio is not responding
+
+The attached instructions identified steps 3 and 4 as filtering to New Orleans and saving RDS files. Codex checked the existing filtered outputs outside RStudio and confirmed they were readable:
+
+| Dataset | Records |
+|---|---:|
+| All filtered New Orleans restaurant businesses | 2,259 |
+| Reviews for those businesses | 476,421 |
+| New Orleans cooking businesses | 672 |
+| Reviews for the cooking businesses | 250,304 |
+
+The response showed how to load the smaller theme files with `readRDS()` instead of importing the raw JSON again. This verified access to the saved data; it did not diagnose or repair the RStudio freeze. Codex did not delete the raw files.
+
+## Missing-value checks and troubleshooting a failed command
+
+**Initial prompt:**
+
+> How do i manuall look for missing values? I did a quick skim but it seems like there are no missing values
+
+Codex suggested counting `NA` values with `colSums(is.na(restaurants))`, checking blank text fields separately, and inspecting incomplete rows in RStudio. The first response assumed an object named `restaurants` already existed in the active session.
+
+**Follow-up reporting the error:**
+
+```text
+> colSums(is.na(restaurants))
+Error: object 'restaurants' not found
+
+> colSums(is.na(name))
+Error: object 'name' not found
+```
+
+Codex corrected the loading instructions and explained that `name` is a column inside the restaurant data frame. It provided this sequence:
+
+```r
+restaurants <- readRDS(
+  "data/new_orleans/business_new_orleans_cooking.rds"
+)
+colSums(is.na(restaurants))
+sum(is.na(restaurants$name))
+```
+
+It also suggested `readRDS(file.choose())` if the relative file path failed. This follow-up made the instructions usable in a fresh R session.
+
+**Follow-up verification:** During the initial analysis requested below, Codex ran the full NA and blank-text checks. There were no NA values in the retained columns, but seven restaurant addresses were blank. The affected businesses were exported for follow-up and retained because their coordinates were present. A quick skim is not recorded as proof of completeness.
+
+## Starting the descriptive analysis
+
+**Prompt:**
+
+> Can you start the analysis for me?
+
+Codex implemented and ran `R/analysis.R` using the saved theme RDS files. It generated column-level missingness checks, validation checks, a business-level summary joined to available reviews, category summaries, and three plots. It also compared alternative restaurant review-count thresholds and reviewer activity thresholds without choosing a final cutoff.
+
+The checks found no duplicate IDs, orphan reviews, restaurants without reviews, out-of-range ratings or coordinates, unparseable review dates, or invalid open-status values. There were seven blank addresses. The median published business rating was 4 stars; available reviews per restaurant ranged from 5 to 7,673. These checks do not establish location accuracy or current opening status.
+
+Codex visually inspected the three exported plots and added the results to the report. Final rankings and geographic comparisons remain pending. The code and tables are available in [the analysis script](../R/analysis.R) and [the restaurant summary](../data/analysis/restaurant_summary.csv).
+
+## Responsibility and remaining work
+
+**Portfolio format prompt:** "for the portfolio format, can you do Option 2: README plus a rendered HTML report"
+
+Codex organized the README as the portfolio landing page, added viewing and reproduction instructions, and linked it to the rendered report and separate AI log in `docs/`. Source-code and CSV links accompany the results. The report continues to identify unfinished rankings and geographic work.
+
+The user selected the theme, requested the top 15, and selected ZCTAs and wards. Codex assisted with code, data filtering, descriptive analysis, documentation, explanations, and output checks. Final ranking eligibility, review-volume threshold selection, reviewer-adjusted ratings, geographic comparisons, maps, and final conclusions remain unfinished. Suggested methods are not presented as completed results.
+
+Add later prompts, corrections, validation results, and decisions to this log as the analysis progresses. The final product should retain specific examples of how follow-up prompts changed the work.

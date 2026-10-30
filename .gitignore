@@ -2,3 +2,6 @@
 inference
 data/raw/
 data/new_orleans/*.rds
+
+/.quarto/
+**/*.quarto_ipynb

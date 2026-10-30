@@ -1,0 +1,10 @@
+"check","issues"
+"Duplicate business IDs",0
+"Duplicate review IDs",0
+"Reviews without a matching selected business",0
+"Restaurants without reviews",0
+"Invalid business ratings",0
+"Invalid review ratings",0
+"Invalid coordinates",0
+"Invalid or missing review dates",0
+"Invalid open-status values",0

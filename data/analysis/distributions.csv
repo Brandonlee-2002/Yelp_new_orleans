@@ -1,0 +1,4 @@
+"metric","minimum","q1","median","mean","q3","maximum"
+"Yelp business stars",1,3.5,4,3.82217261904762,4,5
+"Available reviews per restaurant",5,28,106.5,372.47619047619,375.75,7673
+"Mean available review stars per restaurant",1,3.54499694935937,3.93741205997265,3.83324916160225,4.21110045552625,5

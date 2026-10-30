@@ -1,0 +1,73 @@
+## Initial descriptive results
+
+The filtered theme contains **672 restaurants** and **250,304 reviews** from **138,848 distinct reviewers**. Reviews span **2005-03-14 to 2022-01-19**.
+
+### Data quality
+
+The missing-value audit found 0 NA values and 7 blank text fields. Details are shown below.
+
+Duplicate-ID, review-linkage, rating-range, coordinate-range, date-parsing, and open-status checks found no issues. Range checks do not establish coordinate accuracy, and absence of missing values does not establish overall accuracy.
+
+| dataset | column | missing_na | blank_text |
+| --- | --- | --- | --- |
+| restaurants | address | 0 | 7 |
+
+The seven blank street addresses are retained because coordinates are present. They have not been imputed or independently checked; see the exported missing-address table for follow-up.
+
+**435 businesses are marked open and 237 marked closed** in the historical snapshot. No open-status exclusion has been applied; these flags do not verify current operating status.
+
+### Category counts and overlap
+
+Memberships overlap: the four category counts must not be added together. Category means describe the included businesses; they are not independent cuisine comparisons.
+
+| category | restaurants | marked_open | mean_business_stars | median_available_reviews | available_reviews |
+| --- | --- | --- | --- | --- | --- |
+| Cajun/Creole | 401 | 258 | 3.77 | 169.0 | 188043 |
+| Seafood | 331 | 235 | 3.87 | 117.0 | 144026 |
+| Southern | 155 | 98 | 3.91 | 174.0 | 66355 |
+| Soul Food | 70 | 47 | 3.96 | 44.5 | 16936 |
+
+![Restaurant counts for the four selected categories](figures/cooking_category_counts.png)
+
+### Ratings and review volume
+
+| metric | minimum | q1 | median | mean | q3 | maximum |
+| --- | --- | --- | --- | --- | --- | --- |
+| Yelp business stars | 1 | 3.50 | 4.00 | 3.82 | 4.00 | 5 |
+| Available reviews per restaurant | 5 | 28.00 | 106.50 | 372.48 | 375.75 | 7673 |
+| Mean available review stars per restaurant | 1 | 3.54 | 3.94 | 3.83 | 4.21 | 5 |
+
+Business stars are Yelp's published business-level values. Mean review stars are recalculated from the available review records; they are separate measures. Each restaurant receives equal weight in the descriptive means above.
+
+Available-review counts differ from the business table's review_count for **473 restaurants**. Both counts are retained separately; threshold comparisons below use actual available review records. The cause of any differences has not been established.
+
+![Distribution of Yelp business stars](figures/cooking_rating_distribution.png)
+
+![Restaurant average review stars versus available review volume](figures/cooking_ratings_review_volume.png)
+
+### Review-volume sensitivity
+
+These are alternative eligibility rules, not a selected cutoff. The marked-open column shows how an additional historical open-status filter would change the pool.
+
+| minimum_available_reviews | restaurants | marked_open_restaurants | mean_business_stars |
+| --- | --- | --- | --- |
+| 0 | 672 | 435 | 3.82 |
+| 10 | 607 | 407 | 3.83 |
+| 25 | 515 | 352 | 3.84 |
+| 50 | 434 | 311 | 3.84 |
+| 100 | 348 | 267 | 3.86 |
+
+### Reviewer activity before normalization
+
+Activity counts use reviews within the selected category group. This table shows how much data remains at different reviewer thresholds; no reviewer-adjusted scores have been calculated yet.
+
+| minimum_category_reviews | reviewers | retained_reviews | percent_reviews |
+| --- | --- | --- | --- |
+| 1 | 138848 | 250304 | 100.00 |
+| 3 | 21971 | 109647 | 43.81 |
+| 5 | 7123 | 60254 | 24.07 |
+| 10 | 1395 | 25527 | 10.20 |
+
+### What remains
+
+Choose and justify the restaurant and reviewer eligibility rules, calculate reviewer-adjusted scores, compare ZCTAs and wards using official boundaries, verify seven-area coverage, and select the final top 15. None of the plots or tables above is a final ranking or geographic result.
