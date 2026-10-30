@@ -171,8 +171,15 @@ map_result <- function(result,system,detail=FALSE) {
      caption="Area colors count restaurants inside full source polygons. Display clipped to Census city boundary.\nPoints outside a polygon are retained in assignment audits; maps do not establish current opening status.")+
    map_theme
  if(detail) {
-  labels <- st_point_on_surface(st_geometry(clipped))
-  label_data <- st_sf(area=clipped$area,geometry=labels)
+  label_shapes <- clipped[clipped$n>0, ]
+  labels <- st_point_on_surface(st_geometry(label_shapes))
+  label_data <- st_sf(area=label_shapes$area,geometry=labels)
+  xy <- st_coordinates(label_data)
+  # Avoid labels for empty slivers or text cut off by the detail-panel edges.
+  inset <- 300
+  keep <- xy[,1]>box["xmin"]+inset & xy[,1]<box["xmax"]-inset &
+    xy[,2]>box["ymin"]+inset & xy[,2]<box["ymax"]-inset
+  label_data <- label_data[keep, ]
   p <- p+geom_sf_text(data=label_data,aes(label=area),size=2.8,check_overlap=TRUE)
  }
  ggsave(paste0("figures/cooking_",tolower(system),if(detail) "_detail" else "_map",".png"),p,
