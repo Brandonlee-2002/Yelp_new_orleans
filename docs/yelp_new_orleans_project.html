@@ -2228,7 +2228,7 @@ vertical-align: -.125em;
 
 <section id="research-question" class="level2">
 <h2 class="anchored" data-anchor-id="research-question">Research question</h2>
-<p><a href="../README.md">Portfolio README</a> · <a href="ai-log.html">AI assistance log</a> · <a href="../yelp_new_orleans_project.qmd">Report source</a></p>
+<p><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/README.md">Portfolio README</a> · <a href="ai-log.html">AI assistance log</a> · <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/yelp_new_orleans_project.qmd">Report source</a></p>
 <p>Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?</p>
 </section>
 <section id="executive-summary" class="level2">
@@ -2238,15 +2238,15 @@ vertical-align: -.125em;
 <section id="data-and-large-file-handling" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-large-file-handling">Data and large-file handling</h2>
 <p>The import scans the complete Yelp business and review JSON files in pages, filters New Orleans restaurants, and retains only the review columns needed for ratings analysis. It saves compressed RDS files so subsequent analysis does not reload the raw JSON. Filtered reviews are accumulated in memory; this is not a fully disk-backed workflow. Review text and voting fields are omitted. The selected review records span March 14, 2005 through January 19, 2022.</p>
-<p>Run <code>Rscript R/analysis.R</code> from the repository root to reproduce the descriptive tables and figures using the saved theme RDS files. This script uses <code>ggplot2</code>. See the <a href="../data/analysis/restaurant_summary.csv">restaurant summary</a>, <a href="../data/analysis/missing_values.csv">missing-value audit</a>, <a href="../data/analysis/restaurants_missing_addresses.csv">restaurants with blank addresses</a>, and <a href="../data/analysis/validation_checks.csv">validation checks</a>.</p>
+<p>Run <code>Rscript R/analysis.R</code> from the repository root to reproduce the descriptive tables and figures using the saved theme RDS files. This script uses <code>ggplot2</code>. See the <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurant_summary.csv">restaurant summary</a>, <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/missing_values.csv">missing-value audit</a>, <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurants_missing_addresses.csv">restaurants with blank addresses</a>, and <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/validation_checks.csv">validation checks</a>.</p>
 </section>
 <section id="restaurant-definition-and-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="restaurant-definition-and-cleaning">Restaurant definition and cleaning</h2>
-<p>Filter to Yelp city <code>New Orleans</code>, state <code>LA</code>, and exact category token <code>Restaurants</code>. Keep both open and closed businesses for the initial historical subset, retain coordinates for later spatial joins, and convert empty postal codes to missing values. See the <a href="../R/clean.R">cleaning code</a> and <a href="../R/import.R">import code</a>.</p>
+<p>Filter to Yelp city <code>New Orleans</code>, state <code>LA</code>, and exact category token <code>Restaurants</code>. Keep both open and closed businesses for the initial historical subset, retain coordinates for later spatial joins, and convert empty postal codes to missing values. See the <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R">cleaning code</a> and <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R">import code</a>.</p>
 </section>
 <section id="category-selection" class="level2">
 <h2 class="anchored" data-anchor-id="category-selection">Category selection</h2>
-<p>Selected theme: <strong>New Orleans cooking</strong>. Include restaurants matching at least one of <code>Cajun/Creole</code>, <code>Seafood</code>, <code>Southern</code>, or <code>Soul Food</code>; count each business once. The planned final ranking contains <strong>15 restaurants</strong>. See <a href="../CATEGORY_SELECTION.md">category selection</a> for counts and co-occurrence evidence.</p>
+<p>Selected theme: <strong>New Orleans cooking</strong>. Include restaurants matching at least one of <code>Cajun/Creole</code>, <code>Seafood</code>, <code>Southern</code>, or <code>Soul Food</code>; count each business once. The planned final ranking contains <strong>15 restaurants</strong>. See <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/CATEGORY_SELECTION.md">category selection</a> for counts and co-occurrence evidence.</p>
 </section>
 <section id="initial-descriptive-results" class="level2">
 <h2 class="anchored" data-anchor-id="initial-descriptive-results">Initial descriptive results</h2>
@@ -2529,12 +2529,12 @@ vertical-align: -.125em;
 </section>
 <section id="portfolio-files-and-source-code" class="level2">
 <h2 class="anchored" data-anchor-id="portfolio-files-and-source-code">Portfolio files and source code</h2>
-<p>The <a href="../README.md">README</a> is the portfolio landing page. This rendered report provides the detailed results without requiring the reader to execute R. Download the repository and open this HTML file in a browser to view it locally.</p>
+<p>The <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/README.md">README</a> is the portfolio landing page. This rendered report provides the detailed results without requiring the reader to execute R. Download the repository and open this HTML file in a browser to view it locally.</p>
 <ul>
-<li><a href="../R/analysis.R">Analysis code</a></li>
-<li><a href="../yelp_new_orleans_project.qmd">Report source</a></li>
-<li><a href="../initial_results.qmd">Generated descriptive results</a></li>
-<li><a href="../ai-log.qmd">AI log source</a></li>
+<li><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R">Analysis code</a></li>
+<li><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/yelp_new_orleans_project.qmd">Report source</a></li>
+<li><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/initial_results.qmd">Generated descriptive results</a></li>
+<li><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/ai-log.qmd">AI log source</a></li>
 </ul>
 </section>
 

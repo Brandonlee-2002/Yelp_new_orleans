@@ -1,6 +1,6 @@
 # Where to Find New Orleans Cooking
 
-**[Read the rendered HTML report](docs/yelp_new_orleans_project.html)** · [AI assistance log](docs/ai-log.html)
+**[Read the report online](https://brandonlee-2002.github.io/Yelp_new_orleans/yelp_new_orleans_project.html)** · [AI assistance log](https://brandonlee-2002.github.io/Yelp_new_orleans/ai-log.html)
 
 **Project status:** Initial descriptive analysis is complete. The final top 15 and geographic comparison are in progress.
 
@@ -16,7 +16,7 @@ Initial analysis covers 672 New Orleans cooking restaurants and 250,304 reviews.
 
 This portfolio uses **Option 2: a README landing page plus a rendered HTML report**. The report contains the methods, tables, graphs, limitations, and analysis progress. The README provides the question, key findings, and links to the supporting work.
 
-To view the report without running R or Quarto, download or clone this repository and open `docs/yelp_new_orleans_project.html` in a browser. Open `docs/ai-log.html` to read the AI log. Both HTML pages embed their display resources. Keep the repository folders together so links to source code and CSV tables work. GitHub may show HTML source when following the file link; use the downloaded file for the rendered browser view.
+View the report directly on [GitHub Pages](https://brandonlee-2002.github.io/Yelp_new_orleans/yelp_new_orleans_project.html) without running R or Quarto. For an offline copy, download or clone this repository and open `docs/yelp_new_orleans_project.html` in a browser. Open `docs/ai-log.html` to read the AI log. Both HTML pages embed their display resources. Keep the repository folders together so links to source code and CSV tables work. GitHub may show HTML source when following the file link; use the downloaded file for the rendered browser view.
 
 ## Data sources
 
@@ -85,3 +85,7 @@ quarto render ai-log.qmd --output-dir docs --no-clean
 ```
 
 The analysis reads the saved theme RDS files and generates CSV summaries in `data/analysis/`, three plots in `figures/`, and `initial_results.qmd`. The `--no-clean` option preserves the other HTML page. Include the rendered `docs/` pages, CSV summaries, figures, and source code in the portfolio repository so readers can inspect results without executing the analysis. Raw JSON and generated RDS files stay excluded from Git.
+
+## GitHub Pages publishing
+
+GitHub Pages serves the committed `docs/` folder from the `main` branch. Render the report and AI log locally with the commands above, commit the updated HTML and figures, then push to `main` to update the site. No raw data or R execution is required on GitHub. `docs/index.html` opens the report at the site root; `docs/.nojekyll` serves the rendered files directly.

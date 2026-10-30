@@ -2217,6 +2217,7 @@ vertical-align: -.125em;
   <li><a href="#working-around-an-unresponsive-rstudio-session" id="toc-working-around-an-unresponsive-rstudio-session" class="nav-link" data-scroll-target="#working-around-an-unresponsive-rstudio-session">Working around an unresponsive RStudio session</a></li>
   <li><a href="#missing-value-checks-and-troubleshooting-a-failed-command" id="toc-missing-value-checks-and-troubleshooting-a-failed-command" class="nav-link" data-scroll-target="#missing-value-checks-and-troubleshooting-a-failed-command">Missing-value checks and troubleshooting a failed command</a></li>
   <li><a href="#starting-the-descriptive-analysis" id="toc-starting-the-descriptive-analysis" class="nav-link" data-scroll-target="#starting-the-descriptive-analysis">Starting the descriptive analysis</a></li>
+  <li><a href="#github-pages-publishing" id="toc-github-pages-publishing" class="nav-link" data-scroll-target="#github-pages-publishing">GitHub Pages publishing</a></li>
   <li><a href="#responsibility-and-remaining-work" id="toc-responsibility-and-remaining-work" class="nav-link" data-scroll-target="#responsibility-and-remaining-work">Responsibility and remaining work</a></li>
   </ul>
 </nav>
@@ -2263,7 +2264,7 @@ vertical-align: -.125em;
 <p>Where can someone find the best restaurants in a selected category in New Orleans, and which geographic area is best for finding them?</p>
 </blockquote>
 <p>The follow-up specified that the category list should come from the local raw data. Codex read the assignment instructions and extracted category tokens from the complete business JSON, restricting the inventory to New Orleans restaurant businesses. It produced a category inventory with counts and suggested related themes. The inventory contained 2,259 restaurants and 300 comma-separated category tokens, including incidental labels attached to restaurant records.</p>
-<p><strong>Evidence:</strong> <a href="../CATEGORY_INVENTORY.md">Category inventory</a> and <a href="../data/new_orleans/category_inventory.csv">CSV inventory</a>. Counts reflect the documented filtering and comma-splitting rules; tokens are not guaranteed to be separate canonical Yelp categories.</p>
+<p><strong>Evidence:</strong> <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/CATEGORY_INVENTORY.md">Category inventory</a> and <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/new_orleans/category_inventory.csv">CSV inventory</a>. Counts reflect the documented filtering and comma-splitting rules; tokens are not guaranteed to be separate canonical Yelp categories.</p>
 </section>
 <section id="selecting-the-theme-and-changing-the-ranking-size" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-the-theme-and-changing-the-ranking-size">Selecting the theme and changing the ranking size</h2>
@@ -2274,7 +2275,7 @@ vertical-align: -.125em;
 <p>The user selected the theme and changed the target from the assignment’s top 10 to <strong>top 15</strong>. Codex implemented the theme using the previously proposed categories: <strong>Cajun/Creole, Seafood, Southern, and Soul Food</strong>. Inclusion requires at least one of those exact category tokens, together with the <code>Restaurants</code> token, city <code>New Orleans</code>, and state <code>LA</code>. Each business counts once in the combined group.</p>
 <p>Codex wrote the import and cleaning workflow in <code>R/import.R</code> and <code>R/clean.R</code>. The import reads the complete JSON files in pages, retains the necessary columns, and saves filtered RDS files. It retained <strong>672 theme restaurants and 250,304 reviews</strong>. Both open and closed businesses were retained initially.</p>
 <p><strong>Verification performed:</strong> Codex loaded the saved RDS files with a separate R process, checked business and review ID uniqueness, confirmed that reviews link to the selected businesses, and verified that every selected restaurant has reviews and coordinates. These checks do not establish the best restaurants or current operating status.</p>
-<p><strong>Evidence:</strong> <a href="../CATEGORY_SELECTION.md">Selection decisions</a>, <a href="../data/new_orleans/cooking_filter_summary.json">filter summary</a>, <a href="../R/import.R">import code</a>, and <a href="../R/clean.R">cleaning code</a>.</p>
+<p><strong>Evidence:</strong> <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/CATEGORY_SELECTION.md">Selection decisions</a>, <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/new_orleans/cooking_filter_summary.json">filter summary</a>, <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R">import code</a>, and <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R">cleaning code</a>.</p>
 </section>
 <section id="clarifying-geographic-coverage-and-selecting-comparison-systems" class="level2">
 <h2 class="anchored" data-anchor-id="clarifying-geographic-coverage-and-selecting-comparison-systems">Clarifying geographic coverage and selecting comparison systems</h2>
@@ -2358,7 +2359,12 @@ Error: object &#39;name&#39; not found</code></pre>
 </blockquote>
 <p>Codex implemented and ran <code>R/analysis.R</code> using the saved theme RDS files. It generated column-level missingness checks, validation checks, a business-level summary joined to available reviews, category summaries, and three plots. It also compared alternative restaurant review-count thresholds and reviewer activity thresholds without choosing a final cutoff.</p>
 <p>The checks found no duplicate IDs, orphan reviews, restaurants without reviews, out-of-range ratings or coordinates, unparseable review dates, or invalid open-status values. There were seven blank addresses. The median published business rating was 4 stars; available reviews per restaurant ranged from 5 to 7,673. These checks do not establish location accuracy or current opening status.</p>
-<p>Codex visually inspected the three exported plots and added the results to the report. Final rankings and geographic comparisons remain pending. The code and tables are available in <a href="../R/analysis.R">the analysis script</a> and <a href="../data/analysis/restaurant_summary.csv">the restaurant summary</a>.</p>
+<p>Codex visually inspected the three exported plots and added the results to the report. Final rankings and geographic comparisons remain pending. The code and tables are available in <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R">the analysis script</a> and <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurant_summary.csv">the restaurant summary</a>.</p>
+</section>
+<section id="github-pages-publishing" class="level2">
+<h2 class="anchored" data-anchor-id="github-pages-publishing">GitHub Pages publishing</h2>
+<p><strong>Prompt:</strong> “can you make the html on github pages?”</p>
+<p>Codex prepared publishing from <code>main</code> and <code>docs/</code>, added a site-root redirect, and changed report links to repository files so they work on the hosted site. The README links to the hosted report and AI log. The rendered HTML is published without uploading the raw data or running the R analysis on GitHub.</p>
 </section>
 <section id="responsibility-and-remaining-work" class="level2">
 <h2 class="anchored" data-anchor-id="responsibility-and-remaining-work">Responsibility and remaining work</h2>

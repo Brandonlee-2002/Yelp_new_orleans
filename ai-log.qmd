@@ -26,7 +26,7 @@ This log documents how Codex assisted with project planning, data preparation, a
 
 The follow-up specified that the category list should come from the local raw data. Codex read the assignment instructions and extracted category tokens from the complete business JSON, restricting the inventory to New Orleans restaurant businesses. It produced a category inventory with counts and suggested related themes. The inventory contained 2,259 restaurants and 300 comma-separated category tokens, including incidental labels attached to restaurant records.
 
-**Evidence:** [Category inventory](../CATEGORY_INVENTORY.md) and [CSV inventory](../data/new_orleans/category_inventory.csv). Counts reflect the documented filtering and comma-splitting rules; tokens are not guaranteed to be separate canonical Yelp categories.
+**Evidence:** [Category inventory](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/CATEGORY_INVENTORY.md) and [CSV inventory](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/new_orleans/category_inventory.csv). Counts reflect the documented filtering and comma-splitting rules; tokens are not guaranteed to be separate canonical Yelp categories.
 
 ## Selecting the theme and changing the ranking size
 
@@ -40,7 +40,7 @@ Codex wrote the import and cleaning workflow in `R/import.R` and `R/clean.R`. Th
 
 **Verification performed:** Codex loaded the saved RDS files with a separate R process, checked business and review ID uniqueness, confirmed that reviews link to the selected businesses, and verified that every selected restaurant has reviews and coordinates. These checks do not establish the best restaurants or current operating status.
 
-**Evidence:** [Selection decisions](../CATEGORY_SELECTION.md), [filter summary](../data/new_orleans/cooking_filter_summary.json), [import code](../R/import.R), and [cleaning code](../R/clean.R).
+**Evidence:** [Selection decisions](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/CATEGORY_SELECTION.md), [filter summary](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/new_orleans/cooking_filter_summary.json), [import code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R), and [cleaning code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R).
 
 ## Clarifying geographic coverage and selecting comparison systems
 
@@ -119,7 +119,13 @@ Codex implemented and ran `R/analysis.R` using the saved theme RDS files. It gen
 
 The checks found no duplicate IDs, orphan reviews, restaurants without reviews, out-of-range ratings or coordinates, unparseable review dates, or invalid open-status values. There were seven blank addresses. The median published business rating was 4 stars; available reviews per restaurant ranged from 5 to 7,673. These checks do not establish location accuracy or current opening status.
 
-Codex visually inspected the three exported plots and added the results to the report. Final rankings and geographic comparisons remain pending. The code and tables are available in [the analysis script](../R/analysis.R) and [the restaurant summary](../data/analysis/restaurant_summary.csv).
+Codex visually inspected the three exported plots and added the results to the report. Final rankings and geographic comparisons remain pending. The code and tables are available in [the analysis script](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R) and [the restaurant summary](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurant_summary.csv).
+
+## GitHub Pages publishing
+
+**Prompt:** "can you make the html on github pages?"
+
+Codex prepared publishing from `main` and `docs/`, added a site-root redirect, and changed report links to repository files so they work on the hosted site. The README links to the hosted report and AI log. The rendered HTML is published without uploading the raw data or running the R analysis on GitHub.
 
 ## Responsibility and remaining work
 

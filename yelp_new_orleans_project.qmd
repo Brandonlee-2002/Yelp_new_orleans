@@ -15,7 +15,7 @@ execute:
 
 ## Research question
 
-[Portfolio README](../README.md) · [AI assistance log](ai-log.html) · [Report source](../yelp_new_orleans_project.qmd)
+[Portfolio README](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/README.md) · [AI assistance log](ai-log.html) · [Report source](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/yelp_new_orleans_project.qmd)
 
 Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?
 
@@ -27,15 +27,15 @@ Initial analysis covers **672 restaurants and 250,304 reviews** in the New Orlea
 
 The import scans the complete Yelp business and review JSON files in pages, filters New Orleans restaurants, and retains only the review columns needed for ratings analysis. It saves compressed RDS files so subsequent analysis does not reload the raw JSON. Filtered reviews are accumulated in memory; this is not a fully disk-backed workflow. Review text and voting fields are omitted. The selected review records span March 14, 2005 through January 19, 2022.
 
-Run `Rscript R/analysis.R` from the repository root to reproduce the descriptive tables and figures using the saved theme RDS files. This script uses `ggplot2`. See the [restaurant summary](../data/analysis/restaurant_summary.csv), [missing-value audit](../data/analysis/missing_values.csv), [restaurants with blank addresses](../data/analysis/restaurants_missing_addresses.csv), and [validation checks](../data/analysis/validation_checks.csv).
+Run `Rscript R/analysis.R` from the repository root to reproduce the descriptive tables and figures using the saved theme RDS files. This script uses `ggplot2`. See the [restaurant summary](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurant_summary.csv), [missing-value audit](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/missing_values.csv), [restaurants with blank addresses](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/restaurants_missing_addresses.csv), and [validation checks](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/data/analysis/validation_checks.csv).
 
 ## Restaurant definition and cleaning
 
-Filter to Yelp city `New Orleans`, state `LA`, and exact category token `Restaurants`. Keep both open and closed businesses for the initial historical subset, retain coordinates for later spatial joins, and convert empty postal codes to missing values. See the [cleaning code](../R/clean.R) and [import code](../R/import.R).
+Filter to Yelp city `New Orleans`, state `LA`, and exact category token `Restaurants`. Keep both open and closed businesses for the initial historical subset, retain coordinates for later spatial joins, and convert empty postal codes to missing values. See the [cleaning code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R) and [import code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R).
 
 ## Category selection
 
-Selected theme: **New Orleans cooking**. Include restaurants matching at least one of `Cajun/Creole`, `Seafood`, `Southern`, or `Soul Food`; count each business once. The planned final ranking contains **15 restaurants**. See [category selection](../CATEGORY_SELECTION.md) for counts and co-occurrence evidence.
+Selected theme: **New Orleans cooking**. Include restaurants matching at least one of `Cajun/Creole`, `Seafood`, `Southern`, or `Soul Food`; count each business once. The planned final ranking contains **15 restaurants**. See [category selection](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/CATEGORY_SELECTION.md) for counts and co-occurrence evidence.
 
 {{< include initial_results.qmd >}}
 
@@ -57,9 +57,9 @@ The descriptive results establish the analysis pool and identify blank addresses
 
 ## Portfolio files and source code
 
-The [README](../README.md) is the portfolio landing page. This rendered report provides the detailed results without requiring the reader to execute R. Download the repository and open this HTML file in a browser to view it locally.
+The [README](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/README.md) is the portfolio landing page. This rendered report provides the detailed results without requiring the reader to execute R. Download the repository and open this HTML file in a browser to view it locally.
 
-- [Analysis code](../R/analysis.R)
-- [Report source](../yelp_new_orleans_project.qmd)
-- [Generated descriptive results](../initial_results.qmd)
-- [AI log source](../ai-log.qmd)
+- [Analysis code](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R)
+- [Report source](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/yelp_new_orleans_project.qmd)
+- [Generated descriptive results](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/initial_results.qmd)
+- [AI log source](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/ai-log.qmd)
