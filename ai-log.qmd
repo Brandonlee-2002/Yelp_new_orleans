@@ -129,6 +129,8 @@ Codex prepared publishing from `main` and `docs/`, added a site-root redirect, a
 
 ## Responsibility and remaining work
 
+**Layout correction:** The user reported that the category table overlapped the side navigation. Codex shortened display headings and contained tables in keyboard-accessible scrolling regions. CSV column names and analysis values remain unchanged.
+
 **Portfolio format prompt:** "for the portfolio format, can you do Option 2: README plus a rendered HTML report"
 
 Codex organized the README as the portfolio landing page, added viewing and reproduction instructions, and linked it to the rendered report and separate AI log in `docs/`. Source-code and CSV links accompany the results. The report continues to identify unfinished rankings and geographic work.

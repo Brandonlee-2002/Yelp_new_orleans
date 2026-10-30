@@ -8,9 +8,13 @@ The missing-value audit found 0 NA values and 7 blank text fields. Details are s
 
 Duplicate-ID, review-linkage, rating-range, coordinate-range, date-parsing, and open-status checks found no issues. Range checks do not establish coordinate accuracy, and absence of missing values does not establish overall accuracy.
 
-| dataset | column | missing_na | blank_text |
+::: {.report-table tabindex="0" role="region" aria-label="Scrollable data table"}
+
+| Dataset | Column | NA values | Blank fields |
 | --- | --- | --- | --- |
 | restaurants | address | 0 | 7 |
+
+:::
 
 The seven blank street addresses are retained because coordinates are present. They have not been imputed or independently checked; see the exported missing-address table for follow-up.
 
@@ -20,22 +24,30 @@ The seven blank street addresses are retained because coordinates are present. T
 
 Memberships overlap: the four category counts must not be added together. Category means describe the included businesses; they are not independent cuisine comparisons.
 
-| category | restaurants | marked_open | mean_business_stars | median_available_reviews | available_reviews |
+::: {.report-table tabindex="0" role="region" aria-label="Scrollable data table"}
+
+| Category | Restaurants | Marked open | Mean stars | Median reviews | Total reviews |
 | --- | --- | --- | --- | --- | --- |
-| Cajun/Creole | 401 | 258 | 3.77 | 169.0 | 188043 |
-| Seafood | 331 | 235 | 3.87 | 117.0 | 144026 |
-| Southern | 155 | 98 | 3.91 | 174.0 | 66355 |
-| Soul Food | 70 | 47 | 3.96 | 44.5 | 16936 |
+| Cajun/Creole | 401 | 258 | 3.77 | 169.0 | 188,043 |
+| Seafood | 331 | 235 | 3.87 | 117.0 | 144,026 |
+| Southern | 155 | 98 | 3.91 | 174.0 | 66,355 |
+| Soul Food | 70 | 47 | 3.96 | 44.5 | 16,936 |
+
+:::
 
 ![Restaurant counts for the four selected categories](figures/cooking_category_counts.png)
 
 ### Ratings and review volume
 
-| metric | minimum | q1 | median | mean | q3 | maximum |
+::: {.report-table tabindex="0" role="region" aria-label="Scrollable data table"}
+
+| Measure | Min | Q1 | Median | Mean | Q3 | Max |
 | --- | --- | --- | --- | --- | --- | --- |
 | Yelp business stars | 1 | 3.50 | 4.00 | 3.82 | 4.00 | 5 |
-| Available reviews per restaurant | 5 | 28.00 | 106.50 | 372.48 | 375.75 | 7673 |
+| Available reviews per restaurant | 5 | 28.00 | 106.50 | 372.48 | 375.75 | 7,673 |
 | Mean available review stars per restaurant | 1 | 3.54 | 3.94 | 3.83 | 4.21 | 5 |
+
+:::
 
 Business stars are Yelp's published business-level values. Mean review stars are recalculated from the available review records; they are separate measures. Each restaurant receives equal weight in the descriptive means above.
 
@@ -49,7 +61,9 @@ Available-review counts differ from the business table's review_count for **473 
 
 These are alternative eligibility rules, not a selected cutoff. The marked-open column shows how an additional historical open-status filter would change the pool.
 
-| minimum_available_reviews | restaurants | marked_open_restaurants | mean_business_stars |
+::: {.report-table tabindex="0" role="region" aria-label="Scrollable data table"}
+
+| Min reviews | Restaurants | Marked open | Mean stars |
 | --- | --- | --- | --- |
 | 0 | 672 | 435 | 3.82 |
 | 10 | 607 | 407 | 3.83 |
@@ -57,16 +71,22 @@ These are alternative eligibility rules, not a selected cutoff. The marked-open 
 | 50 | 434 | 311 | 3.84 |
 | 100 | 348 | 267 | 3.86 |
 
+:::
+
 ### Reviewer activity before normalization
 
 Activity counts use reviews within the selected category group. This table shows how much data remains at different reviewer thresholds; no reviewer-adjusted scores have been calculated yet.
 
-| minimum_category_reviews | reviewers | retained_reviews | percent_reviews |
+::: {.report-table tabindex="0" role="region" aria-label="Scrollable data table"}
+
+| Min reviews per reviewer | Reviewers | Reviews retained | Reviews retained (%) |
 | --- | --- | --- | --- |
-| 1 | 138848 | 250304 | 100.00 |
-| 3 | 21971 | 109647 | 43.81 |
-| 5 | 7123 | 60254 | 24.07 |
-| 10 | 1395 | 25527 | 10.20 |
+| 1 | 138,848 | 250,304 | 100.00 |
+| 3 | 21,971 | 109,647 | 43.81 |
+| 5 | 7,123 | 60,254 | 24.07 |
+| 10 | 1,395 | 25,527 | 10.20 |
+
+:::
 
 ### What remains
 

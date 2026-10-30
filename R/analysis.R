@@ -127,10 +127,22 @@ save_plot(ggplot(summary, aes(x = available_reviews, y = mean_review_stars,
 
 # Generate a report section from actual results, so it updates on reruns.
 md_table <- function(x) {
-  x[] <- lapply(x, function(v) if (is.numeric(v)) format(round(v, 2), trim = TRUE) else as.character(v))
-  c(paste0("| ", paste(names(x), collapse = " | "), " |"),
+  labels <- c(dataset = "Dataset", column = "Column", missing_na = "NA values",
+    blank_text = "Blank fields", category = "Category", restaurants = "Restaurants",
+    marked_open = "Marked open", mean_business_stars = "Mean stars",
+    median_available_reviews = "Median reviews", available_reviews = "Total reviews",
+    metric = "Measure", minimum = "Min", q1 = "Q1", median = "Median", mean = "Mean",
+    q3 = "Q3", maximum = "Max", minimum_available_reviews = "Min reviews",
+    marked_open_restaurants = "Marked open", minimum_category_reviews = "Min reviews per reviewer",
+    reviewers = "Reviewers", retained_reviews = "Reviews retained", percent_reviews = "Reviews retained (%)")
+  headings <- unname(labels[names(x)])
+  headings[is.na(headings)] <- names(x)[is.na(headings)]
+  x[] <- lapply(x, function(v) if (is.numeric(v)) format(round(v, 2), big.mark = ",", trim = TRUE) else as.character(v))
+  c('::: {.report-table tabindex="0" role="region" aria-label="Scrollable data table"}', "",
+    paste0("| ", paste(headings, collapse = " | "), " |"),
     paste0("| ", paste(rep("---", ncol(x)), collapse = " | "), " |"),
-    apply(x, 1, function(row) paste0("| ", paste(row, collapse = " | "), " |")))
+    apply(x, 1, function(row) paste0("| ", paste(row, collapse = " | "), " |")),
+    "", ":::")
 }
 nonzero <- quality[quality$missing_na > 0 | quality$blank_text > 0, ]
 missing_text <- if (!nrow(nonzero)) {

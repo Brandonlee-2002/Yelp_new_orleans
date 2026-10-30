@@ -1,0 +1,30 @@
+/* Keep tables inside the article, including beside Quarto's margin TOC. */
+main.content,
+main.content section {
+  min-width: 0;
+}
+
+.report-table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+}
+
+.report-table table {
+  width: 100%;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.report-table th,
+.report-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+
+.report-table:focus-visible {
+  outline: 2px solid #176b75;
+  outline-offset: 2px;
+}
