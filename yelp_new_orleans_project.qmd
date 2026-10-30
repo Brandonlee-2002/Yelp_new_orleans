@@ -1,14 +1,14 @@
 ---
-title: "Where to find New Orleans cooking"
-subtitle: "15 standout restaurants, reviewer-adjusted ratings, and the geography behind them."
+title: "Finding New Orleans’ standouts"
+subtitle: "How 249,002 reviews become a restaurant shortlist—and a careful area recommendation."
 author: "Brandon Lee"
 date: 2026-10-29
 format:
   html:
-    toc: true
-    toc-depth: 2
+    toc: false
     embed-resources: true
     css: report.css
+    body-classes: story-page
     include-before-body: report-nav.html
 execute:
   echo: true
@@ -16,6 +16,4 @@ execute:
   message: false
 ---
 
-> Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?
-
-{{< include final_results.qmd >}}
+{{< include story_results.qmd >}}

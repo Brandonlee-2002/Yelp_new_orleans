@@ -36,7 +36,7 @@ Checked against `inference/yelp new orleans project instructions.qmd` on October
 
 ## Verification evidence
 
-`steps_3_to_6_validation.csv` records 12 passing cross-file/geographic checks. `final_validation.csv` records nine passing final eligibility, centering, ID, and coordinate checks. `environment_restore_check.csv` records all locked package version checks; `environment_restore_result.txt` records the independent restore and ranking reproduction. HTML link, navigation, embedded-figure, and responsive-table checks accompany the rendered pages.
+`steps_3_to_6_validation.csv` records 12 passing cross-file/geographic checks. `final_validation.csv` records nine passing final eligibility, centering, ID, and coordinate checks. `environment_restore_check.csv` records all locked package version checks; `environment_restore_result.txt` records the independent restore and ranking reproduction. HTML link, navigation, embedded-figure, and responsive-table checks accompany the rendered pages. A visual-story landing page now links to the full Results page, methods appendix, and AI log; the presentation adds no new statistical claims.
 
 ## Scope and limitations carried forward
 

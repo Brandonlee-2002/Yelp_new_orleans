@@ -1,0 +1,21 @@
+---
+title: "The full restaurant results"
+subtitle: "Rankings, review evidence, sensitivity comparisons, and the area recommendation."
+author: "Brandon Lee"
+date: 2026-10-29
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    embed-resources: true
+    css: report.css
+    include-before-body: report-nav.html
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+> Where can someone find the top 15 restaurants for New Orleans cooking—Cajun/Creole, Seafood, Southern, or Soul Food—in New Orleans, and which geographic area is best for finding them?
+
+{{< include final_results.qmd >}}

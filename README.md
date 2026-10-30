@@ -1,6 +1,6 @@
 # Where to find New Orleans cooking
 
-**[Read the report →](https://brandonlee-2002.github.io/Yelp_new_orleans/yelp_new_orleans_project.html)** · [Methods & maps](https://brandonlee-2002.github.io/Yelp_new_orleans/methods.html) · [AI assistance log](https://brandonlee-2002.github.io/Yelp_new_orleans/ai-log.html)
+**[Explore the visual story →](https://brandonlee-2002.github.io/Yelp_new_orleans/yelp_new_orleans_project.html)** · [Full results](https://brandonlee-2002.github.io/Yelp_new_orleans/results.html) · [Methods & maps](https://brandonlee-2002.github.io/Yelp_new_orleans/methods.html) · [AI assistance log](https://brandonlee-2002.github.io/Yelp_new_orleans/ai-log.html)
 
 A portfolio project by **Brandon Lee** combining large-file data preparation, reviewer-adjusted ratings, and spatial analysis in R.
 
@@ -22,9 +22,9 @@ The final analysis covers **656 city-contained restaurants and 249,002 reviews**
 
 ## Portfolio format
 
-This is **Option 2: README plus a rendered HTML report**, hosted on GitHub Pages. The report, methods appendix, and AI log are already rendered; readers do not need to run R or Quarto. For a local copy, download the repository and open `docs/index.html` in a browser.
+This is **Option 2: README plus a rendered HTML report**, hosted on GitHub Pages. The visual story, results page, methods appendix, and AI log are already rendered; readers do not need to run R or Quarto. For a local copy, download the repository and open `docs/index.html` in a browser.
 
-The main report contains the final findings, ranked table, numbered boundary map, reviewer normalization, area recommendation, and limitations. The methods appendix contains category counts and overlaps, data-quality checks, joins, source documentation, geographic comparisons, and diagnostic maps.
+The visual story guides readers through the selection funnel, reviewer adjustment, standouts, map, and area uncertainty. The full results page contains the ranked table, definitions, sensitivity comparisons, and limitations. The methods appendix contains category counts and overlaps, data-quality checks, joins, source documentation, geographic comparisons, and diagnostic maps.
 
 ## Data and decisions
 
@@ -38,9 +38,9 @@ Scores subtract a reviewer's mean rating in the selected city/category pool from
 
 | Location | Purpose |
 |---|---|
-| `docs/` | Published report, methods appendix, and AI log |
-| `yelp_new_orleans_project.qmd`, `methods.qmd`, `ai-log.qmd` | Quarto page sources |
-| `initial_results.qmd`, `geographic_results.qmd`, `final_results.qmd` | Generated report sections |
+| `docs/` | Published visual story, results page, methods appendix, and AI log |
+| `yelp_new_orleans_project.qmd`, `results.qmd`, `methods.qmd`, `ai-log.qmd` | Quarto page sources |
+| `initial_results.qmd`, `geographic_results.qmd`, `final_results.qmd`, `story_results.qmd` | Generated report sections |
 | `R/import.R`, `R/clean.R` | Paged import, exact category filtering, saved RDS files |
 | `R/analysis.R`, `R/geography.R`, `R/rankings.R` | Descriptive, geographic, and reviewer-adjusted analyses |
 | `R/download_boundaries.R` | Boundary retrieval; preserves existing snapshots |
@@ -75,10 +75,7 @@ Rscript R/analysis.R
 Rscript R/download_boundaries.R
 Rscript R/geography.R
 Rscript R/rankings.R
-python3 scripts/build_final_sections.py
-quarto render yelp_new_orleans_project.qmd --output-dir docs --no-clean
-quarto render methods.qmd --output-dir docs --no-clean
-quarto render ai-log.qmd --output-dir docs --no-clean
+bash scripts/render.sh
 ```
 
 Imports process pages of 10,000 JSON records and keep only needed columns. Filtered reviews are accumulated in memory, then saved as compressed RDS. Subsequent analysis uses the smaller files. Saved boundary snapshots are reused without downloading again. The `--no-clean` flag preserves the other HTML pages. Commit and push the rendered `docs/` files to update GitHub Pages from `main`'s `/docs` folder.

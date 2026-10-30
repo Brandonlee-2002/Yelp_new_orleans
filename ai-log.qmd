@@ -170,3 +170,10 @@ The final historical top 15 is led by Tito's Ceviche & Pisco, Ajun Cajun, and Re
 Codex added the final ranked table, a numbered ward-boundary map, raw/adjusted comparisons, area scores and sensitivity tables, conclusions, and reproducibility checks. The visual presentation uses shared navigation, typography, colors, summary cards, readable tables, and separate report, methods, and AI-log pages. The user selected the theme, top-15 target, and comparison systems; Codex selected and justified the final analysis thresholds. These are analytical choices, not user-provided criteria.
 
 The environment audit found a dependency mismatch: the installed units package required a newer Rcpp. A compatible copy was installed in a temporary library, leaving the system library unchanged. A populated lockfile and an isolated restore test verified 50 package versions (47 project packages and three R-recommended packages) and regenerated the identical ordered top-15 IDs. Data and rendered-output checks are recorded alongside the analysis; historical operating status and the true causes of boundary mismatches have not been independently verified.
+
+
+## Presenting the results as a visual story
+
+**Prompt:** "could we show the results into a visual story? it would look more appealing? would that be more professional?"
+
+Codex created a five-chapter visual narrative from the completed outputs: the restaurant selection funnel, an illustrative reviewer-baseline comparison, the top-15 ranking, the ward map, and ten area-sensitivity tiles. The full analytical report remains available on a separate Results page. Colors, labels, sample sizes, and uncertainty notes explain the evidence rather than imply new findings. Scenario counts are explicitly distinguished from probabilities or independent votes. The statistical outputs and ranking rules were preserved.

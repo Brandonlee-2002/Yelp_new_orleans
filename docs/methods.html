@@ -2218,6 +2218,71 @@ code { overflow-wrap:anywhere; }
 .portfolio-footer { border-top:1px solid var(--line); margin-top:3rem; padding-top:1.2rem; font-size:.78rem; color:var(--muted); }
 @media(max-width:760px) { .stat-grid { grid-template-columns:1fr; gap:.65rem; } .stat-card { padding:.9rem 1rem; } .stat-number { font-size:1.9rem; } .portfolio-nav { align-items:flex-start; flex-direction:column; padding:1rem; } .portfolio-links { flex-wrap:wrap; gap:1rem; } #title-block-header { margin-top:1.5rem; } h2 { font-size:1.45rem; } .report-table { -webkit-overflow-scrolling:touch; } }
 @media print { .portfolio-nav,#quarto-margin-sidebar { display:none; } body { background:white; } .report-table { overflow:visible; } .rank-table { min-width:0; } }
+
+.story-page #title-block-header { border-bottom:0; margin-bottom:1rem; }
+.story-page #title-block-header h1 { font-size:clamp(2.6rem,5vw,4.4rem); }
+.story-page h2 { font-family:Georgia,serif; font-size:clamp(1.8rem,3.3vw,2.65rem); line-height:1.15; border:0; margin-top:4rem; padding-top:1.5rem; }
+.story-lede { font-size:1.2rem; line-height:1.65; margin:1.7rem 0 2rem; }
+.story-question { font-size:.8rem; color:var(--muted); border-top:1px solid var(--line); padding-top:1rem; }
+.story-button { display:inline-block; background:var(--teal); color:white; border-radius:6px; padding:.65rem 1rem; font-size:.82rem; font-weight:650; text-decoration:none; margin:.45rem .8rem .45rem 0; }
+.story-button:hover,.story-button:focus { color:white; background:#104d56; }
+.story-text-link { font-size:.82rem; font-weight:650; }
+.chapter-label { font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:750; margin:.2rem 0 1.2rem; }
+.story-funnel { padding:1.6rem; margin:1.5rem 0; border:1px solid var(--line); border-radius:12px; background:white; }
+.funnel-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:1.2rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); }
+.funnel-row:last-child { border:0; }
+.funnel-copy strong { font:2.1rem Georgia,serif; color:var(--ink); margin-right:.7rem; }
+.funnel-copy span { display:block; font-weight:700; font-size:.85rem; }
+.funnel-copy p { color:var(--muted); font-size:.73rem; line-height:1.45; margin:.3rem 0 0; }
+.funnel-track { height:30px; background:#eff3ef; border-radius:4px; }
+.funnel-bar { height:100%; background:var(--teal); border-radius:4px; min-width:4px; }
+.funnel-row:last-child .funnel-bar { background:var(--gold); }
+.story-details { border-bottom:1px solid var(--line); padding:.8rem 0; margin-bottom:1.3rem; font-size:.82rem; }
+.story-details summary { color:var(--teal); cursor:pointer; font-weight:700; }
+.story-details p { margin:.9rem 0 0; }
+.baseline-examples { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:1.8rem 0 1rem; }
+.baseline-card { background:#eef4f0; border-radius:10px; padding:1.45rem; }
+.baseline-card>span { font-size:.8rem; color:var(--muted); }
+.baseline-card p { font-size:.83rem; margin:.7rem 0 0; }
+.baseline-equation { font:1.9rem Georgia,serif; color:var(--ink); padding-top:.6rem; }
+.baseline-equation b { display:block; color:var(--teal); font-weight:500; }
+.visual-note { font-size:.77rem; color:var(--muted); line-height:1.6; }
+.story-takeaway { display:flex; align-items:center; gap:1.5rem; padding:1.5rem 0; margin:1.3rem 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.story-takeaway>strong { font:2.8rem Georgia,serif; color:var(--teal); white-space:nowrap; }
+.story-takeaway p { margin:0; font-size:.9rem; }
+.standout-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:1.6rem 0 2rem; }
+.standout-card { display:block; padding:1.1rem; border:1px solid var(--line); border-top:3px solid var(--gold); border-radius:8px; background:white; color:inherit; text-decoration:none; }
+.standout-card:hover { color:inherit; border-color:var(--teal); }
+.story-rank { font:.95rem Georgia,serif; color:var(--gold); }
+.standout-card h3 { font:1.17rem Georgia,serif; margin:.6rem 0; line-height:1.25; }
+.standout-card p { font-size:.73rem; color:var(--muted); line-height:1.5; }
+.standout-card>strong { font:1.7rem Georgia,serif; color:var(--teal); }
+.standout-unit { display:block; font-size:.7rem; color:var(--muted); }
+.standout-evidence { margin:.8rem 0 0; padding-top:.6rem; border-top:1px solid var(--line); }
+.geography-story { display:grid; grid-template-columns:1fr 1fr 2fr; gap:1rem; align-items:center; margin:1.5rem 0; padding:1.3rem; background:#edf4f0; border-radius:8px; }
+.geography-story strong { display:block; font:2.3rem Georgia,serif; color:var(--teal); }
+.geography-story span { font-size:.75rem; }
+.geography-story p { font-size:.82rem; margin:0; }
+.scenario-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; margin:1.5rem 0; }
+.scenario-tile { padding:1rem 1.1rem; border-radius:8px; background:#eef1ef; border-left:4px solid #748b80; }
+.scenario-tile>span { display:block; font-size:.72rem; color:#43585e; }
+.scenario-tile>strong { display:block; font:1.5rem Georgia,serif; padding:.3rem 0; color:var(--ink); }
+.scenario-tile small { font-size:.65rem; color:var(--muted); }
+.ward-9 { background:#e5f1ed; border-left-color:#176b75; }
+.ward-2 { background:#f5eddd; border-left-color:#aa6427; }
+.ward-12 { background:#eeeaf5; border-left-color:#817096; }
+.ward-7 { background:#e8eff5; border-left-color:#61819a; }
+.ward-13 { background:#e9efe0; border-left-color:#7c8957; }
+.primary-scenario { outline:2px solid var(--teal); outline-offset:2px; }
+.story-conclusion { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.5rem; padding:1.6rem; margin-top:2rem; background:#fff; border:1px solid var(--line); border-radius:10px; }
+.story-conclusion h3 { font:1.6rem Georgia,serif; margin:.7rem 0; }
+.story-conclusion p { font-size:.87rem; margin:0; }
+.story-resource-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:1.5rem 0; }
+.story-resource-grid a { border-top:2px solid var(--teal); padding:1rem 0; text-decoration:none; }
+.story-resource-grid strong { display:block; font-size:.95rem; margin-bottom:.5rem; }
+.story-resource-grid span { color:var(--muted); font-size:.75rem; display:block; }
+@media(max-width:760px) { .standout-grid,.baseline-examples,.story-conclusion,.story-resource-grid { grid-template-columns:1fr; } .geography-story { grid-template-columns:1fr 1fr; } .geography-story p { grid-column:1/-1; } .story-page h2 { margin-top:2.8rem; } .funnel-row { grid-template-columns:1.1fr 1fr; gap:.6rem; } .story-funnel { padding:1rem; } .scenario-tile { padding:.9rem; } .scenario-tile>span { font-size:.68rem; } }
+@media(max-width:420px) { .scenario-grid { grid-template-columns:1fr; } .story-takeaway { align-items:flex-start; flex-direction:column; gap:.5rem; } }
 </style>
 </head>
 
@@ -2240,7 +2305,7 @@ code { overflow-wrap:anywhere; }
 <main class="content" id="quarto-document-content">
 <nav class="portfolio-nav" aria-label="Portfolio navigation">
   <a class="portfolio-brand" href="yelp_new_orleans_project.html">BRANDON LEE <span>DATA PORTFOLIO</span></a>
-  <div class="portfolio-links"><a href="yelp_new_orleans_project.html">Report</a><a href="methods.html">Methods</a><a href="ai-log.html">AI log</a><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans">Source ↗</a></div>
+  <div class="portfolio-links"><a href="yelp_new_orleans_project.html">Story</a><a href="results.html">Results</a><a href="methods.html">Methods</a><a href="ai-log.html">AI log</a><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans">Source ↗</a></div>
 </nav>
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -2278,7 +2343,7 @@ code { overflow-wrap:anywhere; }
 <p class="eyebrow">
 Methods appendix · Full evidence and diagnostic maps
 </p>
-<p>This appendix preserves the initial 672-restaurant descriptive pool and documents the later restriction to 656 restaurants inside Census New Orleans. Read the <a href="yelp_new_orleans_project.html">main report</a> for the final top 15, reviewer-adjusted results, sensitivity analysis, and conclusions.</p>
+<p>This appendix preserves the initial 672-restaurant descriptive pool and documents the later restriction to 656 restaurants inside Census New Orleans. Read the <a href="results.html">full results</a> for the final top 15, reviewer-adjusted results, sensitivity analysis, and conclusions.</p>
 <section id="data-and-large-file-handling" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-large-file-handling">Data and large-file handling</h2>
 <p>The business and review JSON streams were read in pages of 10,000 records. The complete review scan covered 6,990,280 records and retained 476,421 reviews for 2,259 New Orleans restaurant businesses. Category selection retained 672 businesses and 250,304 reviews; the independent city-boundary check produced the final 656-business, 249,002-review pool.</p>
@@ -3062,7 +3127,7 @@ Methods appendix · Full evidence and diagnostic maps
 </section>
 <section id="reproducibility-and-source-files" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility-and-source-files">Reproducibility and source files</h2>
-<p>Follow the <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans">repository README</a> to restore the locked R environment, run the scripts, and render all three pages. Final reviewer normalization, eligibility, score definitions, and sensitivity results appear in the <a href="yelp_new_orleans_project.html#what-makes-a-restaurant-best">main report</a>.</p>
+<p>Follow the <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans">repository README</a> to restore the locked R environment, run the scripts, and render all four pages. Final reviewer normalization, eligibility, score definitions, and sensitivity results appear in the <a href="results.html#what-makes-a-restaurant-best">full results</a>.</p>
 <ul>
 <li><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R">Import</a> · <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R">Cleaning</a></li>
 <li><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R">Initial analysis</a> · <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/geography.R">Geographic analysis</a></li>

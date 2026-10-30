@@ -18,7 +18,7 @@ execute:
 
 <p class="eyebrow">Methods appendix · Full evidence and diagnostic maps</p>
 
-This appendix preserves the initial 672-restaurant descriptive pool and documents the later restriction to 656 restaurants inside Census New Orleans. Read the [main report](yelp_new_orleans_project.html) for the final top 15, reviewer-adjusted results, sensitivity analysis, and conclusions.
+This appendix preserves the initial 672-restaurant descriptive pool and documents the later restriction to 656 restaurants inside Census New Orleans. Read the [full results](results.html) for the final top 15, reviewer-adjusted results, sensitivity analysis, and conclusions.
 
 ## Data and large-file handling
 
@@ -40,7 +40,7 @@ The label-based theme connects regional cooking traditions and seafood, but is b
 
 ## Reproducibility and source files
 
-Follow the [repository README](https://github.com/Brandonlee-2002/Yelp_new_orleans) to restore the locked R environment, run the scripts, and render all three pages. Final reviewer normalization, eligibility, score definitions, and sensitivity results appear in the [main report](yelp_new_orleans_project.html#what-makes-a-restaurant-best).
+Follow the [repository README](https://github.com/Brandonlee-2002/Yelp_new_orleans) to restore the locked R environment, run the scripts, and render all four pages. Final reviewer normalization, eligibility, score definitions, and sensitivity results appear in the [full results](results.html#what-makes-a-restaurant-best).
 
 - [Import](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R) · [Cleaning](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R)
 - [Initial analysis](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/analysis.R) · [Geographic analysis](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/geography.R)
