@@ -86,6 +86,8 @@ Imports process pages of 10,000 JSON records and keep only needed columns. Filte
 
 For a quick project overview, see the [architecture](ARCHITECTURE.md), [data dictionary](DATA_DICTIONARY.md), [analytical decision log](DECISIONS.md), and [decision-oriented summary](business_recommendation.md).
 
+When the original Yelp JSON files are available locally, `make recall` runs the full spatial city-label recall audit in `R/recall_audit.R`. It compares all Louisiana restaurant businesses whose coordinates fall inside the official New Orleans boundary with the exact `city == "New Orleans"` theme pool and writes the extra-business and extra-review counts to `data/analysis/`.
+
 ## Limits
 
 Results are historical, category-dependent, and sensitive to evidence rules. The initial exact Yelp city-label filter can omit businesses labeled with a different city. Only 23.9% of reviews contribute to adjusted scores; activity selection changes the reviewer mix. Geographic boundary dates do not align with every review date, and some coordinates or addresses may be imprecise. The analysis does not model price, travel time, current service, causal effects, or statistically significant differences between wards.

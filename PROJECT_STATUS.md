@@ -67,7 +67,9 @@ The remaining portfolio improvements are now implemented:
 - architecture, data dictionary, analytical decision log, and decision-oriented summary;
 - explicit package documentation, ethics/use limitations, and bootstrap interpretation notes.
 
-`Rscript tests/test_pipeline.R` passes. The committed HTML pages remain available in `docs/`; local Quarto rendering was not re-run successfully in this environment because Quarto failed to open its cache database.
+`Rscript tests/test_pipeline.R` passes. The Quarto Sass cache issue was repaired locally by moving the stale cache database to a recoverable temp location; the full report pages were then regenerated in `docs/`.
+
+The original Yelp JSON files are not present locally, so a full spatial city-label recall count could not be computed. `R/recall_audit.R` and `make recall` now provide the reproducible audit when those source files are restored.
 
 ## Statistical hardening pass — November 5, 2026
 

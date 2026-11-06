@@ -2318,6 +2318,7 @@ code { overflow-wrap:anywhere; }
   <li><a href="#initial-descriptive-results" id="toc-initial-descriptive-results" class="nav-link" data-scroll-target="#initial-descriptive-results">Initial descriptive results</a></li>
   <li><a href="#steps-36-categories-joins-and-geography" id="toc-steps-36-categories-joins-and-geography" class="nav-link" data-scroll-target="#steps-36-categories-joins-and-geography">Steps 3–6: categories, joins, and geography</a></li>
   <li><a href="#reproducibility-and-source-files" id="toc-reproducibility-and-source-files" class="nav-link" data-scroll-target="#reproducibility-and-source-files">Reproducibility and source files</a></li>
+  <li><a href="#methods-defense" id="toc-methods-defense" class="nav-link" data-scroll-target="#methods-defense">Methods defense</a></li>
   </ul>
 </nav>
 </div>
@@ -3146,6 +3147,15 @@ Methods appendix · Full evidence and diagnostic maps
 </section>
 <section id="reproducibility-and-source-files" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility-and-source-files">Reproducibility and source files</h2>
+<p>The main packages are <code>jsonlite</code> for streamed JSON parsing, <code>dplyr</code> for grouped summaries, <code>ggplot2</code> for charts, <code>sf</code> for spatial joins and maps, <code>ggrepel</code> for readable labels, <code>renv</code> for dependency locking, and Quarto for rendered reports. Native <code>sf</code> dependencies may still require GDAL, GEOS, and PROJ on systems without suitable binaries.</p>
+<p>The final ranking also includes a fixed-seed bootstrap stability diagnostic. It resamples eligible reviews within each restaurant for 1,000 replicates while holding reviewer baselines, restaurant eligibility, and area membership fixed. This is deliberately described as a stability analysis rather than a claim of population-level statistical inference.</p>
+</section>
+<section id="methods-defense" class="level2">
+<h2 class="anchored" data-anchor-id="methods-defense">Methods defense</h2>
+<p>The primary reviewer adjustment now uses a leave-one-review-out baseline: a review is compared with the reviewer’s mean score across their other reviews. This avoids using the target review to define its own reference point. The Yelp extract contains repeated <code>(user_id, business_id)</code> pairs, so the project audits those pairs and uses true leave-one-review-out arithmetic rather than assuming one review per reviewer-business pair.</p>
+<p>The five-review reviewer threshold, 50-review restaurant minimum, 20 eligible-reviewer minimum, and ten-restaurant ward minimum remain the primary specification. These are evidence-coverage rules, not claims of statistical significance. The sensitivity output separates reviewer selection from adjustment, includes legacy in-sample baselines, closed businesses, strict core-cuisine scope, shrinkage, and lower-confidence-bound rankings.</p>
+<p>The ranking uncertainty analysis uses 1,000 fixed-seed bootstrap replicates, resampling eligible reviews within each restaurant and reporting rank percentiles and top-15 inclusion probabilities. Ward uncertainty additionally reports restaurant-level bootstrap intervals and a max-selection permutation test. Split-half reliability compares how consistently raw and adjusted restaurant scores reproduce across random halves; if adjustment is not more reliable, that result is retained as a limitation rather than treated as evidence in its favor. An <code>lme4</code> mixed-model cross-check is optional and is explicitly marked skipped when the package is unavailable.</p>
+<p>The broad category theme remains the headline scope, while a strict core-cuisine sensitivity excludes businesses that match only Seafood. This is important because Yelp labels are operational categories, not authenticity evidence. Area language is intentionally limited to “highest mean among rankable wards” when the permutation test does not distinguish the winner.</p>
 <p>Follow the <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans">repository README</a> to restore the locked R environment, run the scripts, and render all four pages. Final reviewer normalization, eligibility, score definitions, and sensitivity results appear in the <a href="results.html#what-makes-a-restaurant-best">full results</a>.</p>
 <ul>
 <li><a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R">Import</a> · <a href="https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R">Cleaning</a></li>

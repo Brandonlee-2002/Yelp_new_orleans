@@ -1,4 +1,4 @@
-.PHONY: all rebuild import analyze geography rank uncertainty report test clean
+.PHONY: all rebuild import analyze geography rank uncertainty recall report test clean
 
 all: report
 
@@ -17,6 +17,9 @@ rank:
 
 uncertainty:
 	Rscript R/rankings.R
+
+recall:
+	Rscript R/recall_audit.R
 
 rebuild: import analyze geography rank uncertainty
 
