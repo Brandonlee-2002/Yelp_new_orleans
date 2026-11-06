@@ -1,0 +1,4 @@
+Bootstrap replicates: 500
+Resampling unit: eligible reviews within each eligible restaurant.
+Eligibility pool, reviewer baselines, and ward membership are held fixed.
+Intervals describe score instability under this resampling design; they are not confidence intervals for all restaurants in New Orleans.

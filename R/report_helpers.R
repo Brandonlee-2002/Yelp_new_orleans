@@ -1,5 +1,6 @@
 # Presentation helpers shared by the report-generating scripts.
 md_table <- function(x) {
+  if (!nrow(x)) return("_No rows meet this reporting condition._")
   labels <- c(dataset = "Dataset", column = "Column", missing_na = "NA values",
     blank_text = "Blank fields", category = "Category", restaurants = "Restaurants",
     marked_open = "Marked open", mean_business_stars = "Mean stars",
@@ -10,7 +11,8 @@ md_table <- function(x) {
     reviewers = "Reviewers", retained_reviews = "Reviews retained", percent_reviews = "Reviews retained (%)")
   headings <- unname(labels[names(x)])
   headings[is.na(headings)] <- names(x)[is.na(headings)]
-  x[] <- lapply(x, function(v) if (is.numeric(v)) format(round(v, 2), big.mark = ",", trim = TRUE) else as.character(v))
+  x[] <- lapply(x, function(v) if (is.numeric(v)) format(round(v, 2), big.mark = ",", trim = TRUE) else gsub("\\|", "\\\\|", as.character(v)))
+  headings <- gsub("\\|", "\\\\|", headings)
   c('::: {.report-table tabindex="0" role="region" aria-label="Scrollable data table"}', "",
     paste0("| ", paste(headings, collapse = " | "), " |"),
     paste0("| ", paste(rep("---", ncol(x)), collapse = " | "), " |"),

@@ -7,6 +7,7 @@ esc=lambda x:html.escape(str(x))
 top=read('top_15_restaurants.csv')
 m=json.loads((root/'data/analysis/final_metrics.json').read_text())
 assert len(top)==15 and m['city_restaurants']==656 and m['eligible_restaurants']==288
+best_ward=m['highest_mean_ward']; best_score=m['highest_mean_ward_score']
 cards=[]
 for row in top[:3]:
  cards.append(f'''<a class="standout-card" href="results.html#the-top-15"><span class="story-rank">{int(row['rank']):02d}</span><h3>{esc(row['business_name'])}</h3><p>{esc(row['ward'])} · {esc(row['address'])}</p><strong>+{float(row['adjusted_mean']):.3f}</strong><span class="standout-unit"> adjusted star points</span><p class="standout-evidence">{int(row['eligible_reviewers']):,} eligible reviewers · {int(row['available_reviews']):,} total reviews</p></a>''')
@@ -16,7 +17,7 @@ labels={'Primary':'Primary rules','Reviewers: 3+':'Reviewer activity ≥3','Revi
 tiles=[]
 for row in read('area_recommendation_sensitivity.csv'):
  ward=row['best_ward']; primary=row['scenario']=='Primary'
- tiles.append(f'''<div class="scenario-tile ward-{ward.split()[-1]}{' primary-scenario' if primary else ''}"><span>{esc(labels[row['scenario']])}</span><strong>{esc(ward)}</strong><small>{'Primary recommendation' if primary else 'Leading ward under this rule'}</small></div>''')
+ tiles.append(f'''<div class="scenario-tile ward-{ward.split()[-1]}{' primary-scenario' if primary else ''}"><span>{esc(labels.get(row['scenario'],row['scenario']))}</span><strong>{esc(ward)}</strong><small>{'Primary result' if primary else 'Leading ward under this rule'}</small></div>''')
 content=f'''<p class="eyebrow">A visual research story · Historical Yelp data through January 2022</p>
 
 <div class="story-lede"><p>The strongest individual restaurants are spread across <strong>11 wards</strong>. Choosing one “best area” depends on how we define enough evidence.</p><a class="story-button" href="#from-656-restaurants-to-15-standouts">Follow the evidence ↓</a><a class="story-text-link" href="results.html">Read the full results →</a></div>
@@ -45,7 +46,7 @@ Some reviewers award high ratings frequently. Others score more strictly. We com
 
 <p class="visual-note">Illustrative examples. Adjusted scores measure deviations in star points, not new Yelp ratings. Reviewer eligibility requires five reviews in the selected city/category pool; only 23.9% of all reviews enter the adjusted analysis.</p>
 
-<div class="story-takeaway"><strong>12 of 15</strong><p>restaurants appear in both the raw and adjusted top 15, using the same eligible pool. Reviewer selection and adjustment still change important positions.</p></div>
+<div class="story-takeaway"><strong>Three comparisons</strong><p>separate reviewer selection from leave-one-review-out adjustment. The sensitivity table in the full report shows how each stage changes the shortlist.</p></div>
 
 ## The top 15
 
@@ -77,15 +78,15 @@ The top 15 cross **11 wards**. A single area cannot capture every standout. Map 
 
 <p class="chapter-label">05 / Keep the uncertainty visible</p>
 
-**Ward 9 leads the primary comparison:** its 12 eligible restaurants average **+0.083** star points above their reviewers' usual ratings. That answer requires at least ten eligible restaurants per ward, equal restaurant weights, and the primary reviewer/evidence rules.
+**{best_ward} has the highest mean among rankable wards:** its primary adjusted score is **{best_score:+.3f}**. The permutation test does not statistically distinguish the highest ward, so this is a descriptive comparison rather than a universal recommendation.
 
 The tiles below show the leading ward each time we change one analysis choice.
 
 <div class="scenario-grid" role="group" aria-label="Leading wards across ten sensitivity specifications">{''.join(tiles)}</div>
 
-<p class="visual-note">Each tile is one specification, not a probability estimate or independent vote. These are descriptive comparisons without significance tests. Ward 13's nine eligible restaurants score higher under the primary measure, but fall below the ten-restaurant area minimum.</p>
+<p class="visual-note">Each tile is one specification, not a probability estimate or independent vote. The full report adds bootstrap intervals and a max-selection permutation test; the primary highest mean is not statistically distinguished.</p>
 
-<div class="story-conclusion"><div><span class="eyebrow">Primary adjusted recommendation</span><h3>Start with Ward 9</h3><p>It leads among the ten wards meeting the primary evidence rule. Wards 2, 7, 12, and 13 lead other specifications, so no single ward is a stable winner.</p></div><div><span class="eyebrow">Largest overall selection</span><h3>Explore Ward 4</h3><p>Its 116 theme restaurants offer the widest selection in the full city-contained pool. Selection size and adjusted quality answer different parts of the research question.</p></div></div>
+<div class="story-conclusion"><div><span class="eyebrow">Primary area result</span><h3>Highest mean: {best_ward}</h3><p>It leads among wards meeting the primary evidence rule, but the result is not statistically distinguished.</p></div><div><span class="eyebrow">Largest overall selection</span><h3>Explore Ward 4</h3><p>Selection size and adjusted quality answer different parts of the research question.</p></div></div>
 
 ## Explore the evidence
 

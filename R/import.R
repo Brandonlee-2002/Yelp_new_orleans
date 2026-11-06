@@ -21,13 +21,13 @@ selected <- select_cooking_restaurants(restaurants)
 saveRDS(restaurants, file.path(output_dir, "business_new_orleans.rds"))
 saveRDS(selected, file.path(output_dir, "business_new_orleans_cooking.rds"))
 write.csv(selected, file.path(output_dir, "business_new_orleans_cooking.csv"), row.names = FALSE)
+write.csv(category_long(selected), file.path(output_dir, "business_category_long.csv"), row.names = FALSE)
 message("Retained ", nrow(selected), " cooking-theme restaurants from ", nrow(restaurants), " restaurants.")
 
-tokens <- category_tokens(selected$categories)
-category_counts <- data.frame(category = selected_categories,
-  restaurants = vapply(selected_categories, function(cat) {
-    sum(vapply(tokens, function(x) cat %in% x, logical(1)))
-  }, integer(1)))
+long_categories <- category_long(selected)
+category_counts <- aggregate(business_id ~ category, long_categories, function(x) length(unique(x)))
+names(category_counts)[2] <- "restaurants"
+category_counts <- category_counts[match(selected_categories, category_counts$category), ]
 write.csv(category_counts, file.path(output_dir, "cooking_category_counts.csv"), row.names = FALSE)
 pairs <- combn(selected_categories, 2L)
 pair_counts <- data.frame(category_1 = pairs[1, ], category_2 = pairs[2, ],

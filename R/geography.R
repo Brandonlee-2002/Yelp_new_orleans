@@ -21,7 +21,7 @@ write_table <- function(x, name) write.csv(x, file.path("data/analysis",name), r
 all_business <- readRDS("data/new_orleans/business_new_orleans.rds")
 business <- readRDS("data/new_orleans/business_new_orleans_cooking.rds")
 review_data <- readRDS("data/new_orleans/reviews_new_orleans_cooking.rds")
-summary <- read.csv("data/analysis/restaurant_summary.csv", stringsAsFactors=FALSE,
+restaurant_summary <- read.csv("data/analysis/restaurant_summary.csv", stringsAsFactors=FALSE,
   colClasses=c(postal_code="character"))
 points <- st_transform(st_as_sf(all_business, coords=c("longitude","latitude"), crs=4326, remove=FALSE), analysis_crs)
 
@@ -49,10 +49,11 @@ join_audit <- data.frame(check=c("Selected restaurants","Reviews before join","R
 write_table(join_audit,"review_join_audit.csv")
 rm(joined)
 
-selected_points <- points[match(summary$business_id, points$business_id), ]
-selected_points$available_reviews <- summary$available_reviews
-selected_points$mean_review_stars <- summary$mean_review_stars
-assign <- function(boundaries, system) {
+selected_points <- points[match(restaurant_summary$business_id, points$business_id), ]
+stopifnot(!anyNA(match(restaurant_summary$business_id, points$business_id)))
+selected_points$available_reviews <- restaurant_summary$available_reviews
+selected_points$mean_review_stars <- restaurant_summary$mean_review_stars
+assign_areas <- function(boundaries, system, write=TRUE) {
   out <- st_join(selected_points, boundaries[,"area",drop=FALSE], join=st_within, left=TRUE)
   stopifnot(nrow(out)==nrow(selected_points), !anyDuplicated(out$business_id))
   # Classify boundary-touching and outside points without silently snapping them.
@@ -71,9 +72,11 @@ assign <- function(boundaries, system) {
       mean_review_stars=if(n) mean(x$mean_review_stars) else NA_real_,
       sparse=n<10)
   }))
-  write_table(d,paste0(tolower(system),"_restaurant_assignments.csv"))
-  write_table(d[unmatched,],paste0(tolower(system),"_unmatched.csv"))
-  write_table(stats,paste0(tolower(system),"_area_summary.csv"))
+  if(write) {
+    write_table(d,paste0(tolower(system),"_restaurant_assignments.csv"))
+    write_table(d[unmatched,],paste0(tolower(system),"_unmatched.csv"))
+    write_table(stats,paste0(tolower(system),"_area_summary.csv"))
+  }
   populated <- stats$restaurants[stats$restaurants>0]
   comparison <- data.frame(system=system,boundary_areas=nrow(stats),populated_areas=length(populated),
     assigned=sum(!unmatched),unmatched=sum(unmatched),boundary_points=sum(touching),
@@ -84,8 +87,8 @@ assign <- function(boundaries, system) {
   list(points=out,stats=stats,comparison=comparison,boundaries=boundaries)
 }
 # Preserve the initial Yelp-city-label results before choosing a city-only scope.
-z_initial <- assign(zctas,"ZCTA")
-w_initial <- assign(wards,"Ward")
+z_initial <- assign_areas(zctas,"ZCTA",write=FALSE)
+w_initial <- assign_areas(wards,"Ward",write=FALSE)
 write_table(rbind(z_initial$comparison,w_initial$comparison),"geography_initial_scope.csv")
 initial_assignments <- data.frame(business_id=business$business_id,
   zcta=z_initial$points$area[match(business$business_id,z_initial$points$business_id)],
@@ -108,8 +111,8 @@ city_reviews <- review_data[review_data$business_id %in% city_business$business_
 saveRDS(city_business,"data/new_orleans/business_cooking_in_city.rds")
 saveRDS(city_reviews,"data/new_orleans/reviews_cooking_in_city.rds")
 selected_points <- selected_points[selected_points$business_id %in% city_business$business_id,]
-z <- assign(zctas,"ZCTA")
-w <- assign(wards,"Ward")
+z <- assign_areas(zctas,"ZCTA")
+w <- assign_areas(wards,"Ward")
 # Distances for unmatched ward locations help investigate shoreline gaps.
 ward_unmatched <- w$points[is.na(w$points$area),]
 if(nrow(ward_unmatched)) {
@@ -118,13 +121,15 @@ if(nrow(ward_unmatched)) {
   ward_unmatched$distance_to_ward_m <- as.numeric(st_distance(ward_unmatched,wards[nearest,],by_element=TRUE))
   write_table(st_drop_geometry(ward_unmatched),"ward_unmatched.csv")
 }
+business_tokens <- category_tokens(business$categories)
+city_tokens <- category_tokens(city_business$categories)
 city_category_counts <- data.frame(category=selected_categories,
-  initial_restaurants=vapply(selected_categories,function(cat) sum(vapply(category_tokens(business$categories),function(x) cat %in% x,logical(1))),integer(1)),
-  city_restaurants=vapply(selected_categories,function(cat) sum(vapply(category_tokens(city_business$categories),function(x) cat %in% x,logical(1))),integer(1)))
+  initial_restaurants=vapply(selected_categories,function(cat) sum(vapply(business_tokens,function(x) cat %in% x,logical(1))),integer(1)),
+  city_restaurants=vapply(selected_categories,function(cat) sum(vapply(city_tokens,function(x) cat %in% x,logical(1))),integer(1)))
 write_table(city_category_counts,"category_scope_comparison.csv")
 pairs <- combn(selected_categories,2)
 city_pairs <- data.frame(category_1=pairs[1,],category_2=pairs[2,],
-  restaurants=apply(pairs,2,function(pair) sum(vapply(category_tokens(city_business$categories),function(x) all(pair %in% x),logical(1)))))
+  restaurants=apply(pairs,2,function(pair) sum(vapply(city_tokens,function(x) all(pair %in% x),logical(1)))))
 write_table(city_pairs,"city_category_pairs.csv")
 write_table(data.frame(scope=c("Initial Yelp city label","Inside Census city"),
   restaurants=c(nrow(business),nrow(city_business)),reviews=c(nrow(review_data),nrow(city_reviews)),
@@ -155,16 +160,16 @@ urban_box <- st_bbox(st_transform(st_as_sfc(urban),analysis_crs))
 map_theme <- theme_minimal(base_size=11)+theme(axis.text=element_text(size=7),
   plot.title=element_text(face="bold"),panel.grid.minor=element_blank(),
   plot.caption=element_text(hjust=0,size=9))
-map_result <- function(result,system,detail=FALSE) {
+map_result <- function(result,system,detail=FALSE,z_result=z,w_result=w,selected=selected_points,city_boundary=city,urban_boundary=urban_box) {
  b <- result$boundaries
  b$n <- result$stats$restaurants[match(b$area,result$stats$area)]
- box <- if(detail) urban_box else city_box
- clipped <- suppressWarnings(st_intersection(b,st_geometry(city)))
+  box <- if(detail) urban_boundary else city_box
+  clipped <- suppressWarnings(st_intersection(b,st_geometry(city_boundary)))
  p <- ggplot()+geom_sf(data=clipped,aes(fill=n),color="white",linewidth=.25)+
    scale_fill_viridis_c(option="C",name="Restaurants",begin=.1,
-     limits=c(0,max(z$stats$restaurants,w$stats$restaurants)))+
-   geom_sf(data=city,fill=NA,color="grey35",linewidth=.35)+
-   geom_sf(data=result$points,color="#15444c",size=.8,alpha=.65)+
+     limits=c(0,max(z_result$stats$restaurants,w_result$stats$restaurants)))+
+   geom_sf(data=city_boundary,fill=NA,color="grey35",linewidth=.35)+
+   geom_sf(data=selected,color="#15444c",size=.8,alpha=.65)+
    coord_sf(xlim=box[c("xmin","xmax")],ylim=box[c("ymin","ymax")],expand=FALSE)+
    labs(title=paste(system,"coverage:",if(detail) "urban detail" else "New Orleans"),
      subtitle=paste("New Orleans cooking;", nrow(selected_points), "city-contained restaurants"),
@@ -185,7 +190,7 @@ map_result <- function(result,system,detail=FALSE) {
  ggsave(paste0("figures/cooking_",tolower(system),if(detail) "_detail" else "_map",".png"),p,
    width=9,height=6,dpi=160,bg="white")
 }
-for(detail in c(FALSE,TRUE)) { map_result(z,"ZCTA",detail); map_result(w,"Ward",detail) }
+for(detail in c(FALSE,TRUE)) { map_result(z,"ZCTA",detail,z,w,selected_points,city,urban_box); map_result(w,"Ward",detail,z,w,selected_points,city,urban_box) }
 # Place-boundary map includes all 2,259 initial restaurants, including mismatches.
 p <- ggplot()+geom_sf(data=city,fill="grey95",color="grey35")+
   geom_sf(data=place_assignments,aes(color=place_status),size=.8,alpha=.6)+

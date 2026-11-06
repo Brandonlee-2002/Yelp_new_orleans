@@ -1,10 +1,9 @@
 "check","passed"
 "top15_unique",TRUE
-"all_marked_open",TRUE
-"minimum_50_reviews",TRUE
-"minimum_20_eligible_reviewers",TRUE
+"minimum_reviews",TRUE
+"minimum_reviewers",TRUE
+"ranks_contiguous",TRUE
+"duplicate_user_business_pairs_audited",TRUE
+"matched_businesses",TRUE
 "all_have_coordinates",TRUE
-"review_baselines_centered",TRUE
-"all_city_restaurants_retained",TRUE
-"top15_in_city",TRUE
 "area_minimum_met",TRUE

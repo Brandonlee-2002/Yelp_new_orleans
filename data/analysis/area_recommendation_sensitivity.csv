@@ -1,11 +1,13 @@
 "scenario","best_ward","mean_score","rankable_wards"
-"Primary","Ward 9",0.0826217438037362,10
-"Reviewers: 3+","Ward 7",0.0937310366222431,10
-"Reviewers: 10+","Ward 12",0.0392444258976057,7
-"All reviews: 25+","Ward 2",0.0621049574814449,10
-"All reviews: 100+","Ward 2",0.0621049574814449,9
-"Eligible reviewers: 10+","Ward 9",0.09038984872563,10
-"Eligible reviewers: 30+","Ward 12",0.0607668141207928,9
-"Median baseline","Ward 9",-0.126161946276958,10
-"Area minimum: 5+","Ward 13",0.127716607961234,15
-"Area minimum: 15+","Ward 2",0.0621049574814449,6
+"Primary","Ward 9",0.09280420768213,10
+"Reviewers: 3+","Ward 7",0.126461678331346,10
+"Reviewers: 10+","Ward 12",0.0433742362554706,7
+"All reviews: 25+","Ward 2",0.0758356466828011,10
+"All reviews: 100+","Ward 2",0.0758356466828011,9
+"Eligible reviewers: 10+","Ward 9",0.102618361847107,10
+"Eligible reviewers: 30+","Ward 7",0.070857179555064,9
+"Median baseline","Ward 2",-0.107622133088172,10
+"Include closed restaurants","Ward 13",0.0843826323989202,14
+"Core cuisine only (Seafood-only excluded)","Ward 2",0.0431895679652763,7
+"Area minimum: 5+","Ward 13",0.145254568491153,15
+"Area minimum: 15+","Ward 2",0.0758356466828011,6

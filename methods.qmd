@@ -40,6 +40,20 @@ The label-based theme connects regional cooking traditions and seafood, but is b
 
 ## Reproducibility and source files
 
+The main packages are `jsonlite` for streamed JSON parsing, `dplyr` for grouped summaries, `ggplot2` for charts, `sf` for spatial joins and maps, `ggrepel` for readable labels, `renv` for dependency locking, and Quarto for rendered reports. Native `sf` dependencies may still require GDAL, GEOS, and PROJ on systems without suitable binaries.
+
+The final ranking also includes a fixed-seed bootstrap stability diagnostic. It resamples eligible reviews within each restaurant for 1,000 replicates while holding reviewer baselines, restaurant eligibility, and area membership fixed. This is deliberately described as a stability analysis rather than a claim of population-level statistical inference.
+
+## Methods defense
+
+The primary reviewer adjustment now uses a leave-one-review-out baseline: a review is compared with the reviewer's mean score across their other reviews. This avoids using the target review to define its own reference point. The Yelp extract contains repeated `(user_id, business_id)` pairs, so the project audits those pairs and uses true leave-one-review-out arithmetic rather than assuming one review per reviewer-business pair.
+
+The five-review reviewer threshold, 50-review restaurant minimum, 20 eligible-reviewer minimum, and ten-restaurant ward minimum remain the primary specification. These are evidence-coverage rules, not claims of statistical significance. The sensitivity output separates reviewer selection from adjustment, includes legacy in-sample baselines, closed businesses, strict core-cuisine scope, shrinkage, and lower-confidence-bound rankings.
+
+The ranking uncertainty analysis uses 1,000 fixed-seed bootstrap replicates, resampling eligible reviews within each restaurant and reporting rank percentiles and top-15 inclusion probabilities. Ward uncertainty additionally reports restaurant-level bootstrap intervals and a max-selection permutation test. Split-half reliability compares how consistently raw and adjusted restaurant scores reproduce across random halves; if adjustment is not more reliable, that result is retained as a limitation rather than treated as evidence in its favor. An `lme4` mixed-model cross-check is optional and is explicitly marked skipped when the package is unavailable.
+
+The broad category theme remains the headline scope, while a strict core-cuisine sensitivity excludes businesses that match only Seafood. This is important because Yelp labels are operational categories, not authenticity evidence. Area language is intentionally limited to “highest mean among rankable wards” when the permutation test does not distinguish the winner.
+
 Follow the [repository README](https://github.com/Brandonlee-2002/Yelp_new_orleans) to restore the locked R environment, run the scripts, and render all four pages. Final reviewer normalization, eligibility, score definitions, and sensitivity results appear in the [full results](results.html#what-makes-a-restaurant-best).
 
 - [Import](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/import.R) · [Cleaning](https://github.com/Brandonlee-2002/Yelp_new_orleans/blob/main/R/clean.R)

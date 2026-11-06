@@ -1,0 +1,16 @@
+"business_id","business_name","rank","rank_p05","rank_median","rank_p95","prob_top15","overlaps_rank16_20"
+"TUTQeLjq1UbkR5r8mOvMqw","Tito's Ceviche & Pisco",1,1,3,9.04999999999995,0.999,FALSE
+"X1aAjsufci2ibaxSbhFl4Q","Ajun Cajun",2,1,5,24,0.862,TRUE
+"I3Uy20BKx7G-Fzz6hLIeWg","Restaurant August",3,2,6,12,0.988,FALSE
+"W-LtYDGHDF6j0I_810hzuA","Fiorella's the Original",4,1,7,20,0.884,TRUE
+"TMBbCDQG6bENJoQSST0XiA","Brigtsen's Restaurant",5,2,8,18,0.897,TRUE
+"wzIN0IqcNOnUjwuzRoG9AA","Sweet Soulfood",6,1,8,30,0.761,TRUE
+"WO-ofNAvSuJpdRt9Auon6w","Heard Dat Kitchen",7,2,9,25,0.793,TRUE
+"suSDu8cXK_9uuAJopn2R1g","Castnet Seafood",8,1,11,38,0.673,TRUE
+"9xdXS7jtWjCVzL4_oPGv9A","GW Fins",9,5,10,18,0.882,TRUE
+"cIzp7QZOaUyRLl3ZcwsrHw","Addis Nola",10,4,12,26,0.721,TRUE
+"-1XSzguS6XLN-V6MVZMg2A","Restaurant Rebirth",11,3,12,30,0.685,TRUE
+"NYiL2534CAAbr-ynGVbhaQ","Cafe Sbisa",12,3,12,32,0.66,TRUE
+"ftDLK3a4E5DpWPLbFo3ZkQ","Gabrielle Restaurant",13,1,12,47,0.617,TRUE
+"pKvKZCB0fq4KgtK2Pc0yaQ","Budsi's Authentic Thai",14,2,14,46,0.563,TRUE
+"kYgMSD2obyOgORgd3RSE_w","Mr John's Steakhouse",15,5,15,36,0.536,TRUE

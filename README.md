@@ -8,9 +8,9 @@ A portfolio project by **Brandon Lee** combining large-file data preparation, re
 
 ## Findings
 
-The final analysis covers **656 city-contained restaurants and 249,002 reviews**. After applying reviewer-activity and restaurant-evidence rules, **Tito’s Ceviche & Pisco, Ajun Cajun, and Restaurant August** lead the 15-place shortlist. **Ward 9** has the highest average adjusted score among wards meeting the primary area evidence minimum, but the leading ward changes under alternative rules; the data do not establish one universally best area.
+The final analysis covers **656 city-contained restaurants and 249,002 reviews**. After applying reviewer-activity and restaurant-evidence rules with leave-one-review-out baselines, **Tito’s Ceviche & Pisco, Ajun Cajun, and Restaurant August** lead the 15-place shortlist. **Ward 9** has the highest mean adjusted score among wards meeting the primary area evidence minimum, but the max-selection permutation test does not statistically distinguish the winner; the data do not establish one universally best area.
 
-- **Reviewer adjustment matters:** 12 of the adjusted top 15 also appear in the raw-rating top 15, using the same eligible pool.
+- **Reviewer selection and adjustment are separate effects:** the sensitivity table reports all-review raw → eligible-reviewer raw, eligible-reviewer raw → adjusted, and total all-review raw → adjusted comparisons. The legacy in-sample baseline is retained as a separate scenario.
 - **Evidence comes first:** ranking requires a historical open flag, 50+ available reviews, and 20+ distinct eligible reviewers. Reviewers qualify with five reviews in the selected city/category pool. These rules retain 288 restaurants.
 - **Geography matters:** both ZCTAs and wards contain restaurants in 17 areas. Wards offer more balanced restaurant counts; ZCTAs remain the comparison. The final top 15 span 11 wards.
 
@@ -32,7 +32,7 @@ The [Yelp Open Dataset](https://business.yelp.com/data/resources/open-dataset/) 
 
 Geographic inputs are Census 2020 place and ZCTA polygons and a City of New Orleans ward-service snapshot downloaded October 29, 2026. [Boundary provenance, source URLs, and checksums](data/boundaries/README.md) are saved with the inputs. Two lakefront points remain outside the ward polygons; neither is in the final top 15. No nearest-area snapping is applied.
 
-Scores subtract a reviewer's mean rating in the selected city/category pool from each review. They measure deviation from scoring habits, **not new Yelp ratings**. Both mean and median baselines and multiple evidence thresholds are compared. Ward means weight eligible restaurants equally; a ward needs ten eligible restaurants for the primary area ranking. These choices are documented analysis rules, not guarantees of statistical significance.
+Scores subtract a reviewer's leave-one-review-out mean rating in the selected city/category pool from each review. They measure deviation from scoring habits, **not new Yelp ratings**. Both mean and median baselines, bootstrap rank uncertainty, shrinkage, strict-cuisine scope, and multiple evidence thresholds are compared. Ward means weight eligible restaurants equally; a ward needs ten eligible restaurants for the primary area ranking. These choices are documented analysis rules, not guarantees of statistical significance.
 
 ## Repository guide
 
@@ -78,10 +78,16 @@ Rscript R/rankings.R
 bash scripts/render.sh
 ```
 
+If the filtered RDS files and saved boundary snapshots are already present, the full committed-artifact workflow is also available through `make report`; run `make test` for invariant checks. The report pipeline includes a 500-replicate bootstrap stability diagnostic and produces both top-15 and explicitly labeled top-10 outputs.
+
 Imports process pages of 10,000 JSON records and keep only needed columns. Filtered reviews are accumulated in memory, then saved as compressed RDS. Subsequent analysis uses the smaller files. Saved boundary snapshots are reused without downloading again. The `--no-clean` flag preserves the other HTML pages. Commit and push the rendered `docs/` files to update GitHub Pages from `main`'s `/docs` folder.
 
 `R/lock_environment.R` is an optional maintenance script for refreshing and independently testing the environment; it does not modify the system R library. [Validation records](data/analysis/final_validation.csv) check ranking eligibility, ID uniqueness, reviewer centering, and map coordinates. The [completion audit](PROJECT_STATUS.md) links every required deliverable to evidence.
 
+For a quick project overview, see the [architecture](ARCHITECTURE.md), [data dictionary](DATA_DICTIONARY.md), [analytical decision log](DECISIONS.md), and [decision-oriented summary](business_recommendation.md).
+
 ## Limits
 
 Results are historical, category-dependent, and sensitive to evidence rules. The initial exact Yelp city-label filter can omit businesses labeled with a different city. Only 23.9% of reviews contribute to adjusted scores; activity selection changes the reviewer mix. Geographic boundary dates do not align with every review date, and some coordinates or addresses may be imprecise. The analysis does not model price, travel time, current service, causal effects, or statistically significant differences between wards.
+
+The leave-one-review-out adjustment is not automatically more reliable than raw ratings: in the split-half diagnostic, adjusted reliability was 0.752 versus 0.769 for raw ratings. The strict-core-cuisine sensitivity excludes Seafood-only businesses and retains 8 of the primary top 15; this confirms that the broad category theme materially affects the shortlist. The Yelp extract contains repeated reviewer-business pairs, which are audited rather than silently removed. A full spatial recall audit for businesses labeled with a non-New-Orleans city requires rescanning the original raw JSON, which is not committed here.

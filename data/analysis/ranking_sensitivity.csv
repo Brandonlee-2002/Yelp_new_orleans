@@ -1,10 +1,16 @@
-"scenario","reviewer_threshold","minimum_all","minimum_reviewers","eligible_restaurants","top_list_size","top_15_overlap","common_pool_spearman"
-"Primary",5,50,20,288,15,15,1
-"Reviewers: 3+",3,50,20,303,15,12,0.965676227449373
-"Reviewers: 10+",10,50,20,231,15,13,0.947832901730953
-"All reviews: 25+",5,25,20,293,15,14,1
-"All reviews: 100+",5,100,20,262,15,13,1
-"Eligible reviewers: 10+",5,50,10,304,15,13,1
-"Eligible reviewers: 30+",5,50,30,252,15,14,1
-"Median baseline",5,50,20,288,15,10,0.98083673928682
-"Raw all-review stars",5,50,20,288,15,12,0.87639101551668
+"scenario","top_15_overlap","common_pool_spearman"
+"Selection: all-review raw to eligible-reviewer raw",12,0.89736877534371
+"Adjustment: eligible-reviewer raw to adjusted",15,0.958028405049251
+"Total: all-review raw to adjusted",15,0.877284701542023
+"Legacy: baseline includes own review",15,0.999340410482701
+"Shrinkage: empirical-Bayes adjusted score",13,0.997683147864598
+"Lower 90% confidence bound",13,0.973337613381077
+"Reviewers: 3+",11,0.956098364740444
+"Reviewers: 10+",13,0.940758192332405
+"All reviews: 25+",14,1
+"All reviews: 100+",13,1
+"Eligible reviewers: 10+",13,1
+"Eligible reviewers: 30+",14,1
+"Median baseline",13,0.988775424086421
+"Include closed restaurants",12,1
+"Core cuisine only (Seafood-only excluded)",8,1

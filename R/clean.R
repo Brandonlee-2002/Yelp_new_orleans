@@ -1,15 +1,30 @@
-# Exact tokens prevent partial matches such as "Seafood Markets".
-selected_categories <- c("Cajun/Creole", "Seafood", "Southern", "Soul Food")
-ranking_size <- 15L
+source("R/config.R")
 
 category_tokens <- function(x) {
-  lapply(strsplit(ifelse(is.na(x), "", x), ",", fixed = TRUE), trimws)
+  lapply(strsplit(ifelse(is.na(x), "", x), ",", fixed = TRUE), function(values) {
+    values <- trimws(values)
+    values[nzchar(values)]
+  })
+}
+
+# One row per business/category membership.  Keeping this long form makes
+# category counts and co-occurrence logic auditable instead of string-based.
+category_long <- function(business, categories = selected_categories) {
+  tokens <- category_tokens(business$categories)
+  rows <- lapply(seq_along(tokens), function(i) {
+    matched <- intersect(tokens[[i]], categories)
+    if (!length(matched)) return(NULL)
+    data.frame(business_id = business$business_id[i], category = matched,
+      stringsAsFactors = FALSE)
+  })
+  out <- do.call(rbind, rows)
+  if (is.null(out)) data.frame(business_id=character(), category=character()) else out
 }
 
 clean_new_orleans_restaurants <- function(business) {
   tokens <- category_tokens(business$categories)
   keep <- !is.na(business$state) & business$state == "LA" &
-    !is.na(business$city) & business$city == "New Orleans" &
+    !is.na(business$city) & tolower(trimws(business$city)) == "new orleans" &
     vapply(tokens, function(x) "Restaurants" %in% x, logical(1))
   result <- business[keep, , drop = FALSE]
   result <- result[!duplicated(result$business_id), , drop = FALSE]

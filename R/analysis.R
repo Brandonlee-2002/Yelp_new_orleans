@@ -2,7 +2,9 @@
 # Initial descriptive analysis. Run R/geography.R afterward for steps 3-6.
 source("R/clean.R")
 stopifnot(requireNamespace("ggplot2", quietly = TRUE))
+stopifnot(requireNamespace("dplyr", quietly = TRUE))
 library(ggplot2)
+library(dplyr)
 restaurants <- readRDS("data/new_orleans/business_new_orleans_cooking.rds")
 reviews <- readRDS("data/new_orleans/reviews_new_orleans_cooking.rds")
 dir.create("data/analysis", recursive = TRUE, showWarnings = FALSE)
@@ -59,14 +61,15 @@ write_table(summary, "restaurant_summary.csv")
 
 # Categories overlap, so their restaurant and review totals are not additive.
 tokens <- category_tokens(summary$categories)
-category_summary <- do.call(rbind, lapply(selected_categories, function(category) {
-  ix <- vapply(tokens, function(x) category %in% x, logical(1))
-  data.frame(category = category, restaurants = sum(ix),
-    marked_open = sum(summary$is_open[ix] == 1),
-    mean_business_stars = mean(summary$stars[ix]),
-    median_available_reviews = median(summary$available_reviews[ix]),
-    available_reviews = sum(summary$available_reviews[ix]))
-}))
+category_memberships <- category_long(summary)
+write_table(category_memberships, "business_category_long.csv")
+category_summary <- category_memberships %>%
+  left_join(summary %>% select(business_id, is_open, stars, available_reviews), by="business_id") %>%
+  group_by(category) %>%
+  summarise(restaurants=n_distinct(business_id), marked_open=sum(is_open==1),
+    mean_business_stars=mean(stars), median_available_reviews=median(available_reviews),
+    available_reviews=sum(available_reviews), .groups="drop") %>%
+  arrange(match(category, selected_categories)) %>% as.data.frame()
 write_table(category_summary, "category_summary.csv")
 
 # Explore thresholds rather than silently impose one on the final top 15.
