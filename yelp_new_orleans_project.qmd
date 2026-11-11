@@ -6,6 +6,7 @@ date: 2026-10-29
 format:
   html:
     toc: false
+    code-fold: false
     embed-resources: true
     css: report.css
     body-classes: story-page
